@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e0004d">
+<meta name="description" content="台灣化粧品、食品、健康食品廣告法規：SEO/GEO 文案生成與標示廣告審查">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="合規文案">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>合規文案工作台</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: AVON ANEW blush — product-photo hero, pill tabs, white cards on a rose-tinted ground; form left, findings right, stacking on phones */
+:root{
+  --bg:#f7eef0; --panel:#ffffff; --ink:#2e1c22; --muted:#7c636b; --line:#ecdade;
+  --brand:#e0004d; --accent:#d4004a; --accent-ink:#ffffff; --accent-soft:#fce6ee;
+  --hero-bg:#f1d6da; --hero-ink:#3a1d27; --hero-muted:#6e4a55; --hero-line:#d9b3bc;
+  --hi:#b42318; --hi-soft:#fbe9e7; --mid:#a15c00; --mid-soft:#fdf1dc; --lo:#2f5e8a; --lo-soft:#e6eef7; --ok:#2e7d4f; --ok-soft:#e4f3ea;
+  --mark:#ffe9a8;
+  --f-latin:"Lato","Helvetica Neue",Arial,sans-serif;
+  --f-display:"Lato","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-body:"Lato","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1a1215; --panel:#24191d; --ink:#f4e7eb; --muted:#b89ea6; --line:#3b2a30;
+  --brand:#ff4f86; --accent:#ff5c8f; --accent-ink:#1d0a12; --accent-soft:#3b1b27;
+  --hi:#f2847a; --hi-soft:#3a1e1b; --mid:#e8b25c; --mid-soft:#352915; --lo:#8db8e3; --lo-soft:#1b2a3a; --ok:#79cf9c; --ok-soft:#183024;
+  --mark:#5a4a12; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1a1215; --panel:#24191d; --ink:#f4e7eb; --muted:#b89ea6; --line:#3b2a30;
+  --brand:#ff4f86; --accent:#ff5c8f; --accent-ink:#1d0a12; --accent-soft:#3b1b27;
+  --hi:#f2847a; --hi-soft:#3a1e1b; --mid:#e8b25c; --mid-soft:#352915; --lo:#8db8e3; --lo-soft:#1b2a3a; --ok:#79cf9c; --ok-soft:#183024;
+  --mark:#5a4a12; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+/* hero: the product photo is the page's thesis; copy sits in the empty blush field on its left */
+.hero{position:relative;aspect-ratio:2/1;border-radius:14px;overflow:hidden;background:var(--hero-bg)}
+.hero-img{position:absolute;inset:0;background:url("hero.webp") right 15%/cover no-repeat;animation:heroIn 1.4s ease-out both}
+@keyframes heroIn{from{transform:scale(1.04)}to{transform:none}}
+.hero-copy{position:absolute;left:4.5%;top:31%;max-width:44%;display:flex;flex-direction:column;align-items:flex-start;gap:10px;color:var(--hero-ink)}
+.eyebrow{font-family:var(--f-latin);font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);margin:0}
+h1{font-family:var(--f-display);font-weight:300;font-size:clamp(28px,4.6vw,54px);line-height:1.15;margin:0;letter-spacing:.08em;text-wrap:balance}
+.hero .sub{font-size:clamp(13px,1.35vw,16px);line-height:1.7;margin:0;color:var(--hero-muted)}
+.stamp{font-family:var(--f-latin);font-size:11.5px;letter-spacing:.06em;color:var(--hero-muted);border:1px solid var(--hero-line);background:rgba(255,255,255,.45);padding:4px 12px;border-radius:999px;white-space:nowrap}
+@media (max-width:720px){
+  .hero{aspect-ratio:auto;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line)}
+  .hero-img{position:relative;aspect-ratio:16/9;max-width:100%;background-position:right top}
+  .hero-copy{position:static;max-width:none;padding:18px;color:var(--ink)}
+  .hero .sub,.stamp{color:var(--muted)}
+  .stamp{background:transparent;border-color:var(--line)}
+}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px;align-self:flex-start}
+nav.tabs button{font:inherit;font-weight:500;border:0;background:transparent;color:var(--muted);padding:8px 20px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+nav.tabs button:hover{color:var(--accent)}
+nav.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.grid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.panel h2{font-family:var(--f-display);font-size:18px;margin:0 0 12px;font-weight:700;letter-spacing:.04em}
+.panel h3{font-size:14px;margin:0 0 8px;letter-spacing:.04em;color:var(--muted);font-weight:500}
+form{display:flex;flex-direction:column;gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500}
+label small{font-weight:400;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+textarea{resize:vertical;min-height:72px}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+.btn{font:inherit;font-weight:700;letter-spacing:.04em;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:10px 20px;cursor:pointer}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);font-weight:500}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.note{font-size:12.5px;color:var(--muted)}
+.example-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--mid);background:var(--mid-soft);border-radius:3px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.status{font-size:13px;color:var(--muted);min-height:1.4em}
+.status.err{color:var(--hi)}
+/* rendered markdown */
+.md{min-width:0;overflow-wrap:anywhere}
+.md h2{font-family:var(--f-display);font-size:18px;border-top:1px solid var(--line);padding-top:14px;margin:18px 0 8px}
+.md h2:first-child{border-top:0;padding-top:0;margin-top:0}
+.md h3{font-size:15px;margin:14px 0 6px;color:var(--ink);letter-spacing:0}
+.md h4{font-size:14px;margin:12px 0 4px}
+.md p{margin:6px 0;max-width:70ch}
+.md ul,.md ol{margin:6px 0;padding-left:22px}
+.md blockquote{margin:8px 0;padding:6px 12px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 4px 4px 0}
+.md code{font-family:var(--f-mono);font-size:12.5px;background:var(--bg);padding:1px 4px;border-radius:3px}
+.md pre{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto}
+.md pre code{background:none;padding:0;white-space:pre}
+.tbl{overflow-x:auto;margin:8px 0}
+.md table,.ref table{border-collapse:collapse;width:100%;font-size:13.5px}
+.md th,.md td,.ref th,.ref td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.md th,.ref th{background:var(--bg);font-weight:700}
+.empty{color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:24px;text-align:center}
+/* scan chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;border-radius:999px;padding:2px 10px;border:1px solid transparent;cursor:default}
+.chip.l3{background:var(--hi-soft);color:var(--hi);border-color:var(--hi)}
+.chip.l2{background:var(--mid-soft);color:var(--mid);border-color:var(--mid)}
+.chip.l1{background:var(--lo-soft);color:var(--lo);border-color:var(--lo)}
+.chip.okc{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.hl{border-radius:2px;padding:0 1px}
+.hl.l3{background:var(--hi-soft);box-shadow:inset 0 -2px 0 var(--hi)}
+.hl.l2{background:var(--mid-soft);box-shadow:inset 0 -2px 0 var(--mid)}
+.hl.l1{background:var(--lo-soft);box-shadow:inset 0 -2px 0 var(--lo)}
+.mirror{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;font-size:14px;max-height:280px;overflow:auto}
+.scanlist{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.scanlist li{display:grid;grid-template-columns:auto 1fr;gap:8px;font-size:13px;align-items:baseline}
+.sev{font-family:var(--f-mono);font-size:11px;font-weight:500;border-radius:3px;padding:1px 6px;white-space:nowrap}
+.sev.l3{background:var(--hi);color:var(--panel)}
+.sev.l2{background:var(--mid);color:var(--panel)}
+.sev.l1{background:var(--lo);color:var(--panel)}
+/* verdict + findings */
+.verdict{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-radius:6px;border:1px solid var(--line)}
+.verdict b{font-family:var(--f-display);font-size:20px}
+.verdict.v3{background:var(--hi-soft);border-color:var(--hi);color:var(--hi)}
+.verdict.v2{background:var(--mid-soft);border-color:var(--mid);color:var(--mid)}
+.verdict.v1{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.verdict p{margin:0;color:var(--ink);flex:1 1 260px}
+.findings{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.finding{border:1px solid var(--line);border-left:4px solid var(--lo);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.finding.l3{border-left-color:var(--hi)} .finding.l2{border-left-color:var(--mid)}
+.finding q{font-weight:700;quotes:"「" "」"}
+.finding .law{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.finding .fix{background:var(--ok-soft);color:var(--ink);border-radius:4px;padding:4px 8px;font-size:13.5px}
+.finding .fix::before{content:"建議改寫　";color:var(--ok);font-weight:700}
+.drop{border:1.5px dashed var(--line);border-radius:8px;padding:14px;text-align:center;color:var(--muted);font-size:13px;cursor:pointer}
+.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.hfbox{border:1px solid var(--accent);background:var(--accent-soft);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.hfbox .drop{background:var(--panel)}
+.hfhead{display:flex;flex-direction:column;gap:2px;font-size:13px}
+.hfhead b{font-size:14px;color:var(--accent)}
+.hfcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.hfcard dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 12px;margin:0}
+.hfcard dt{color:var(--muted)}
+.hfcard dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
+.hfcard .bad{color:var(--hi)}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px}
+.thumb{position:relative;width:84px;height:84px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg);font-size:11px;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px}
+.thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.thumb button{position:absolute;top:2px;right:2px;z-index:1;border:0;background:var(--ink);color:var(--panel);border-radius:50%;width:20px;height:20px;line-height:20px;padding:0;cursor:pointer;font-size:12px}
+.ref{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px}
+.ref .panel p,.ref .panel li{font-size:14px}
+.ref ul{padding-left:20px;margin:6px 0}
+.mono{font-family:var(--f-mono);font-size:12.5px}
+a{color:var(--accent)}
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.pwa-note{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-size:13.5px}
+.pwa-note p{margin:0;flex:1 1 320px}
+/* share sheet */
+.sheet-back{position:fixed;inset:0;z-index:50;background:rgba(40,12,24,.5);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet{background:var(--panel);border-radius:18px;max-width:1060px;width:100%;padding:22px;display:flex;flex-direction:column;gap:16px;box-shadow:0 20px 60px rgba(40,12,24,.35)}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.sheet-head h2{font-family:var(--f-display);margin:0;font-size:20px;letter-spacing:.04em}
+.x{font:inherit;font-size:20px;line-height:1;border:1px solid var(--line);background:transparent;color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer}
+.sheet-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:22px;align-items:start}
+@media (max-width:820px){.sheet-body{grid-template-columns:minmax(0,1fr)}}
+.sheet-body section{display:flex;flex-direction:column;gap:10px;min-width:0}
+.sheet-body h3{margin:4px 0 0}
+.counts{display:flex;flex-wrap:wrap;gap:6px;font-family:var(--f-latin);font-size:12px;font-variant-numeric:tabular-nums}
+.counts span{border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.counts span.over{border-color:var(--hi);color:var(--hi);background:var(--hi-soft)}
+.plats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:480px){.plats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.plat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:58px;border-radius:12px;color:#fff;text-decoration:none;font-family:var(--f-latin);font-weight:700;font-size:14px;letter-spacing:.02em}
+.plat small{font-family:var(--f-body);font-weight:400;font-size:11px;opacity:.9}
+.plat:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.plat.line{background:#06c755}
+.plat.fb{background:#1877f2}
+.plat.ig{background:linear-gradient(45deg,#f9a03f,#e1306c 50%,#833ab4)}
+.plat.th{background:var(--ink);color:var(--panel)}
+#sh-canvas{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.warnline{font-size:13px;border-radius:8px;padding:6px 10px}
+.warnline.bad{background:var(--hi-soft);color:var(--hi)}
+.warnline.good{background:var(--ok-soft);color:var(--ok)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-img" role="img" aria-label="AVON ANEW 煥膚霜產品照，粉色背景"></div>
+    <div class="hero-copy">
+      <p class="eyebrow">Regulatory Copy Studio</p>
+      <h1>合規文案工作台</h1>
+      <p class="sub">台灣化粧品・食品・健康食品<br>SEO / GEO 文案生成與標示廣告審查</p>
+      <span class="stamp">法規基準核對 2026-10-31</span>
+    </div>
+  </header>
+
+  <div class="pwa-note" id="pwa-note" hidden>
+    <p>網站版：詞庫掃描、法規速查、轉發與圖卡可離線使用。AI 文案生成、深度審查與許可證擷取需開啟 <a href="https://claude.ai/artifact/YKaEkQxcaRjZm7gqsrxopY" target="_blank" rel="noopener">claude.ai 版</a>。</p>
+    <button class="btn" type="button" id="pwa-install" hidden>加入主畫面</button>
+    <span class="note" id="pwa-ios" hidden>iPhone：用 Safari 開啟，點「分享」→「加入主畫面」。</span>
+  </div>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-gen" aria-selected="true" data-view="gen">文案生成</button>
+    <button role="tab" id="tab-rev" aria-selected="false" data-view="rev">法規審查</button>
+    <button role="tab" id="tab-ref" aria-selected="false" data-view="ref">法規速查</button>
+  </nav>
+
+  <!-- ============ 生成 ============ -->
+  <section id="view-gen" class="grid">
+    <div class="panel">
+      <h2>產品資料 <span class="example-tag" id="gen-ex-tag">範例資料，請換成你的產品</span></h2>
+      <form id="gen-form">
+        <label>產品類別
+          <select id="g-cat"></select>
+        </label>
+        <div class="row2">
+          <label>品牌<input id="g-brand"></label>
+          <label>品名／規格<input id="g-name"></label>
+        </div>
+        <label>許可字號／登錄資訊 <small>健康食品字號、特定用途化粧品許可證字號、產品登錄編號等；無則留空</small>
+          <input id="g-license">
+        </label>
+        <div class="hfbox" id="g-hf" hidden>
+          <div class="hfhead"><b>上傳健康食品許可證</b><span class="note">許可證、核准公函或包裝標示（圖片或 PDF），自動擷取字號、核准保健功效與警語並填入表單</span></div>
+          <div class="drop" id="g-hf-drop" tabindex="0" role="button">點此或拖曳上傳許可證／核准函</div>
+          <input type="file" id="g-hf-file" multiple accept="image/jpeg,image/png,image/webp,image/gif,.pdf,application/pdf" hidden>
+          <div class="status" id="g-hf-status"></div>
+          <div id="g-hf-card"></div>
+        </div>
+        <label id="g-func-wrap" hidden>核准保健功效（照許可證原文）
+          <textarea id="g-func" rows="2"></textarea>
+        </label>
+        <label>主要成分與含量
+          <textarea id="g-ingr" rows="2"></textarea>
+        </label>
+        <label>可佐證的效能 <small>寫試驗名稱、受試人數、期間、結果；沒有佐證的效能不會被寫進文案</small>
+          <textarea id="g-evid" rows="3"></textarea>
+        </label>
+        <label>目標族群與使用情境
+          <textarea id="g-ta" rows="2"></textarea>
+        </label>
+        <div class="row2">
+          <label>主關鍵字<input id="g-kw1"></label>
+          <label>次要／長尾關鍵字<input id="g-kw2"></label>
+        </div>
+        <div class="row2">
+          <label>文案用途
+            <select id="g-ch">
+              <option>官網／電商商品頁</option>
+              <option>部落格 SEO 長文</option>
+              <option>EDM 電子報</option>
+              <option>社群貼文（FB／IG／Threads）</option>
+              <option>直銷夥伴分享短文</option>
+            </select>
+          </label>
+          <label>語氣
+            <select id="g-tone">
+              <option>專業溫暖</option>
+              <option>知性專家</option>
+              <option>親切口語</option>
+              <option>精緻質感</option>
+            </select>
+          </label>
+        </div>
+        <label>其他要求 <small>品牌禁用詞、促銷資訊、字數等</small>
+          <textarea id="g-more" rows="2"></textarea>
+        </label>
+        <div class="btns">
+          <button class="btn" type="submit" id="g-go">生成合規文案</button>
+          <button class="btn ghost" type="button" id="g-stop" hidden>停止</button>
+          <button class="btn ghost" type="button" id="g-clear">清空表單</button>
+        </div>
+        <div class="status" id="g-status"></div>
+      </form>
+    </div>
+
+    <div class="panel" style="display:flex;flex-direction:column;gap:14px">
+      <div class="btns" style="justify-content:space-between">
+        <h2 style="margin:0">生成結果</h2>
+        <div class="btns">
+          <button class="btn" type="button" id="g-share" disabled>一鍵轉發／下載</button>
+          <button class="btn ghost" type="button" id="g-copy" disabled>複製全文</button>
+          <button class="btn ghost" type="button" id="g-to-rev" disabled>送去深度審查</button>
+        </div>
+      </div>
+      <div id="g-scan" hidden>
+        <h3>自動複檢（詞庫比對）</h3>
+        <div class="chips" id="g-scan-chips"></div>
+      </div>
+      <div class="md" id="g-out">
+        <div class="empty">
+          左側填好產品資料後按「生成合規文案」。<br>
+          產出內容包含：合規判讀、SEO 標題與 Meta、關鍵字配置、正文、GEO 問答、JSON-LD 結構化資料、合規自檢表、上架前標示提醒。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 審查 ============ -->
+  <section id="view-rev" class="grid" hidden>
+    <div class="panel">
+      <h2>送審內容</h2>
+      <form id="rev-form">
+        <label>產品類別
+          <select id="r-cat"></select>
+        </label>
+        <div class="hfbox" id="r-hf" hidden>
+          <div class="hfhead"><b>上傳健康食品許可證</b><span class="note">許可證、核准公函或包裝標示（圖片或 PDF）。系統會擷取核准字號與保健功效，審查時逐句比對文案有沒有超出許可範圍</span></div>
+          <div class="drop" id="r-hf-drop" tabindex="0" role="button">點此或拖曳上傳許可證／核准函</div>
+          <input type="file" id="r-hf-file" multiple accept="image/jpeg,image/png,image/webp,image/gif,.pdf,application/pdf" hidden>
+          <div class="status" id="r-hf-status"></div>
+          <div id="r-hf-card"></div>
+        </div>
+        <label>核准資訊 <small>健康食品核准功效、許可證字號、已有的試驗佐證；上傳許可證會自動填入</small>
+          <textarea id="r-ctx" rows="2"></textarea>
+        </label>
+        <label>文案／EDM 文字 <span class="example-tag" id="rev-ex-tag">範例違規文案</span>
+          <textarea id="r-text" rows="8"></textarea>
+        </label>
+        <div>
+          <div class="drop" id="r-drop" tabindex="0" role="button">
+            點此或拖曳上傳：圖片（JPG／PNG／WebP／GIF）、PDF（DM、包裝標示，最多前 6 頁）、EDM 檔（.html／.htm）、文字檔（.txt／.md）
+          </div>
+          <input type="file" id="r-file" multiple accept="image/jpeg,image/png,image/webp,image/gif,.pdf,application/pdf,.html,.htm,.txt,.md" hidden>
+          <div class="thumbs" id="r-thumbs" style="margin-top:8px"></div>
+        </div>
+        <div class="btns">
+          <button class="btn" type="submit" id="r-go">深度審查</button>
+          <button class="btn ghost" type="button" id="r-stop" hidden>停止</button>
+          <button class="btn ghost" type="button" id="r-fwd">轉發／下載此文案</button>
+          <button class="btn ghost" type="button" id="r-clear">清空</button>
+        </div>
+        <div class="status" id="r-status"></div>
+      </form>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+      <div class="panel">
+        <h2>即時詞庫掃描</h2>
+        <p class="note" style="margin:0 0 8px">邊打字邊比對高風險詞，不需送出。只抓字面，語意與圖片要靠下方深度審查。</p>
+        <div class="mirror" id="r-mirror"></div>
+        <ul class="scanlist" id="r-scanlist" style="margin-top:10px"></ul>
+      </div>
+      <div class="panel">
+        <h2>深度審查報告</h2>
+        <div id="r-out">
+          <div class="empty">按「深度審查」後，AI 會依台灣現行法規逐句、逐張圖片判讀，列出違規風險、法源、罰則與改寫建議。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 速查 ============ -->
+  <section id="view-ref" hidden>
+    <div class="ref">
+      <div class="panel">
+        <h2>化粧品</h2>
+        <ul>
+          <li><b>化粧品衛生安全管理法 §10</b>：標示、宣傳、廣告不得虛偽或誇大；不得涉及醫療效能；宣稱效能應有事實佐證（存於產品資訊檔案 PIF）。</li>
+          <li><b>罰則 §22</b>：虛偽誇大 罰 4 萬～20 萬元；涉及醫療效能 罰 60 萬～500 萬元，並得按次處罰。</li>
+          <li><b>認定準則（108.06.04）</b>：依品名、文字、圖案、影像、聲音<b>整體表現</b>綜合判斷。附件一「影響生理機能或改變身體結構」、附件二「醫療效能」、附件三「通常得使用之詞句例示」。</li>
+          <li><b>特定用途化粧品</b>（防曬、染髮、燙髮、止汗制臭、牙齒美白）須查驗登記取得許可證，只能宣稱許可範圍內效能。</li>
+          <li>前後對比照、模特兒使用後「變瘦、變小臉、毛髮變多」等影像，同樣構成違規。</li>
+          <li><b>美白成分限量</b>：化粧品成分使用限制表修正（114.11.06 公告，<b>116.10.01 生效</b>）列入麴酸（臉部及手部 1%）、熊果素（7%，氫醌不純物 20 ppm 以下）、抗壞血酸葡萄糖苷（2%）、維生素 C 磷酸鎂鹽與磷酸鈉鹽（3%）、鞣花酸（3%）、傳明酸等成分及限量。宣稱美白、淡斑時，成分與濃度須符合限制表；116.09.30 前製造或輸入者，可在原保存期限內繼續販賣。</li>
+          <li><b>PIF 查核</b>：食藥署 115.05.28 函說明 PIF 查核採風險管理，防曬、染燙髮、止汗制臭、牙齒美白、嬰兒用、唇用、眼部用、牙膏與漱口水等高風險品項優先查核。文案中的效能宣稱，佐證須存放在製造或輸入業者的 PIF。</li>
+        </ul>
+        <h3 style="margin-top:12px">常見改寫方向</h3>
+        <div class="tbl"><table>
+          <tr><th>避免</th><th>改寫參考</th></tr>
+          <tr><td>消除皺紋、除皺</td><td>淡化乾燥細紋、使肌膚看起來較平滑</td></tr>
+          <tr><td>修復受損細胞、再生</td><td>修護肌膚、調理肌膚</td></tr>
+          <tr><td>抗敏、抗痘、消炎</td><td>舒緩肌膚乾燥不適、清潔毛孔髒污</td></tr>
+          <tr><td>縮小毛孔</td><td>使毛孔看起來較細緻</td></tr>
+          <tr><td>生髮、防掉髮</td><td>清潔頭皮、使頭髮看起來豐盈</td></tr>
+          <tr><td>瘦臉、塑身、燃脂</td><td>（不可宣稱，刪除）</td></tr>
+        </table></div>
+      </div>
+
+      <div class="panel">
+        <h2>食品・膠囊錠狀食品</h2>
+        <ul>
+          <li><b>食品安全衛生管理法 §28</b>：標示、宣傳、廣告不得不實、誇張或易生誤解；不得宣稱醫療效能。</li>
+          <li><b>罰則 §45</b>：不實誇張 罰 4 萬～400 萬元；醫療效能 罰 60 萬～500 萬元；再次違規得命歇業、停業。</li>
+          <li><b>食品及相關產品標示宣傳廣告涉及不實誇張易生誤解或醫療效能認定準則</b>（最新修正 113.05.08）：附件一「通常可使用之詞句」，附件二「營養素生理功能詞句」（須含量達標才可用）。</li>
+          <li>一般食品品名不得含「健康」二字；不得引用機關公文書字號、「衛福部認證」等字樣誤導消費者。</li>
+          <li>不得宣稱改變身體外觀（瘦身、豐胸、增高、美白）、生理功能（增強免疫、助眠、護眼、護肝）或預防、改善、治療疾病。</li>
+        </ul>
+        <h3 style="margin-top:12px">通常可使用之詞句（例）</h3>
+        <p class="note" style="margin:0">幫助消化、幫助維持消化道機能、使排便順暢、改變細菌叢生態、調整體質、調節生理機能、促進新陳代謝、營養補給、健康維持、增強體力、精神旺盛、滋補強身、養顏美容、青春美麗、能量補給。<br>使用時仍須搭配整體表現判斷，不可與疾病或特定器官連結。</p>
+      </div>
+
+      <div class="panel">
+        <h2>健康食品（小綠人）</h2>
+        <ul>
+          <li><b>健康食品管理法</b>：須經查驗登記取得許可證，才能稱「健康食品」或使用標章。</li>
+          <li><b>§14</b>：標示廣告不得涉及醫療效能，內容不得虛偽不實、誇張，且<b>不得超出許可範圍</b>。</li>
+          <li><b>罰則</b>：未經許可以健康食品販售，處 3 年以下有期徒刑，得併科 100 萬元以下罰金（§21）；標示廣告違規罰 10 萬～50 萬元，涉醫療效能罰 40 萬～200 萬元（§24）。</li>
+          <li>核准保健功效項目（衛福部 114.07.03 公告，共 14 項）：骨質保健、調節血脂、胃腸功能改善、免疫調節、牙齒保健、護肝、調節血糖、延緩衰老、抗疲勞、輔助調節血鐵、輔助調節血壓、不易形成體脂肪、輔助調整過敏體質、膝關節保健（新增）。「輔助調節血鐵」舊稱「促進鐵吸收」，舊許可證可能仍寫舊名。實際可用詞句以許可證核准文字為準。</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h2>代言、網紅與平台</h2>
+        <ul>
+          <li><b>公平交易法 §21</b>：商品品質、功效等不得虛偽不實或引人錯誤；薦證者（代言人、網紅）明知或可得而知仍推薦，與廣告主負<b>連帶損害賠償</b>責任。違者依 §42 罰 5 萬～2,500 萬元。</li>
+          <li><b>藥事法 §69</b>：非藥物不得為醫療效能之標示或宣傳。</li>
+          <li>使用醫師、藥師、醫療機構名義推薦，或「臨床證實」卻無可公開佐證，皆屬高風險。</li>
+          <li>直銷夥伴、團媽的個人貼文同樣是廣告；分享心得也不能出現療效、前後對比。</li>
+        </ul>
+        <h3 style="margin-top:12px">官方查詢</h3>
+        <ul>
+          <li><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0040140" target="_blank" rel="noopener">食品廣告認定準則（全國法規資料庫）</a></li>
+          <li><a href="https://law.moj.gov.tw/" target="_blank" rel="noopener">全國法規資料庫</a>（搜尋化粧品衛生安全管理法、健康食品管理法）</li>
+          <li><a href="https://www.fda.gov.tw/" target="_blank" rel="noopener">衛福部食品藥物管理署</a>（違規廣告公布、健康食品許可查詢）</li>
+        </ul>
+      </div>
+
+      <div class="panel" id="updates">
+        <h2>法規更新紀錄</h2>
+        <p class="note" style="margin:0 0 8px">每月 1 日自動檢查食藥署、全國法規資料庫的新公告與修正，有變動會同步更新生成與審查的依據。</p>
+        <ul id="update-log">
+          <!-- UPDATE-LOG:新紀錄加在這一行下方，最新在最上面 -->
+          <li><b>2026-10-31</b>　人工查證：納入化粧品成分使用限制表修正（114.11.06 公告，116.10.01 生效，美白成分限量）與 PIF 查核原則（食藥署 115.05.28 函）。健康食品調節血糖、調節血脂、胃腸功能改善評估方法修正屬試驗方法與名稱調整，不影響文案用詞。</li>
+          <li><b>2026-10-31</b>　人工查證：保健功效第 10 項正式名稱為「輔助調節血鐵」（舊稱促進鐵吸收）；「護肝」以公告名稱為準。已更新速查、法規依據與詞庫。</li>
+          <li><b>2026-10-30</b>　例行檢查，未發現新修正；補列健康食品核准保健功效「膝關節保健」（衛福部 114.07.03 公告新增，現為 14 項），並納入審查詞庫。</li>
+          <li><b>2026-10-30</b>　初版。化粧品認定準則為 108.06.04 版；食品認定準則最新修正 113.05.08（附件二增列硒）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="sheet-back" id="share" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title">
+      <div class="sheet-head">
+        <h2 id="sh-title">複製・下載・轉發</h2>
+        <button type="button" class="x" id="sh-close" aria-label="關閉">×</button>
+      </div>
+      <div class="sheet-body">
+        <section>
+          <h3>貼文文字 <small class="note">可直接修改</small></h3>
+          <textarea id="sh-text" rows="12"></textarea>
+          <div class="counts" id="sh-counts"></div>
+          <div class="warnline" id="sh-scan"></div>
+          <div class="btns">
+            <button class="btn" type="button" id="sh-copy">複製文字</button>
+            <button class="btn ghost" type="button" id="sh-dl-txt">下載文字 .txt</button>
+          </div>
+          <h3>轉發到</h3>
+          <div class="plats">
+            <a class="plat line" id="sh-line" href="https://line.me/" target="_blank" rel="noopener">LINE<small>帶入文字</small></a>
+            <a class="plat fb" id="sh-fb" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook<small>複製後貼上</small></a>
+            <a class="plat ig" id="sh-ig" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram<small>複製後貼上</small></a>
+            <a class="plat th" id="sh-th" href="https://www.threads.net/" target="_blank" rel="noopener">Threads<small>帶入文字</small></a>
+          </div>
+          <p class="note" style="margin:0">LINE 與 Threads 會直接帶入文字（Threads 單篇上限 500 字，超過只帶前 500 字）。Facebook、Instagram 不開放網頁帶入文字，按下時會自動複製文字並開啟網站，貼上即可；IG 需搭配圖片，請先下載右側圖卡。</p>
+        </section>
+        <section>
+          <h3>文案圖卡</h3>
+          <canvas id="sh-canvas" width="1080" height="1350" aria-label="文案圖卡預覽"></canvas>
+          <label>圖卡標題<input id="sh-head" maxlength="40"></label>
+          <label>副標<input id="sh-sub" maxlength="60"></label>
+          <div class="row2">
+            <label>尺寸
+              <select id="sh-size">
+                <option value="1080x1350">IG／Threads 貼文 4:5</option>
+                <option value="1080x1080">FB／LINE 正方形 1:1</option>
+                <option value="1080x1920">限時動態 9:16</option>
+              </select>
+            </label>
+            <label>背景圖
+              <select id="sh-bg">
+                <option value="hero">ANEW 產品照</option>
+                <option value="upload">上傳我的圖片…</option>
+              </select>
+            </label>
+          </div>
+          <input type="file" id="sh-bgfile" accept="image/*" hidden>
+          <div class="btns">
+            <button class="btn" type="button" id="sh-dl-img">下載圖卡 PNG</button>
+            <button class="btn ghost" type="button" id="sh-copy-img">複製圖片</button>
+          </div>
+        </section>
+      </div>
+      <div class="status" id="sh-status" role="status"></div>
+    </div>
+  </div>
+
+  <footer>
+    本工具輔助初審，不構成法律意見。法規與函釋會更新，正式上架前請以全國法規資料庫與食藥署最新公告為準，重大檔期建議送法務或主管機關諮詢。
+  </footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const CATS=[
+  ["cos","一般化粧品（保養、清潔、彩妝）","c"],
+  ["cos-sp","特定用途化粧品（防曬、染燙髮、止汗制臭、牙齒美白）","c"],
+  ["food","一般食品／飲品","f"],
+  ["cap","膠囊錠狀食品（俗稱保健食品）","f"],
+  ["hf","健康食品（具小綠人許可證）","f"],
+  ["sp","特殊營養食品","f"]
+];
+const catScope=id=>(CATS.find(c=>c[0]===id)||CATS[0])[2];
+const catName=id=>(CATS.find(c=>c[0]===id)||CATS[0])[1];
+for(const sel of [$("#g-cat"),$("#r-cat")]) sel.innerHTML=CATS.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
+
+/* ---------- 詞庫：[詞, 適用(c化粧品/f食品/a全部), 風險3高2中1低, 說明, 健康食品許可功效?] ---------- */
+const MED="涉及醫療效能";
+const LEX=[
+ ...["治療","治癒","醫治","根治","療效","藥效","消炎","抗發炎","止痛","痊癒","抗癌","防癌","癌症","腫瘤","糖尿病","高血壓","降血壓","降血糖","降血脂","降膽固醇","三高","痛風","濕疹","異位性皮膚炎","乾癬","香港腳","抗痘","消痘","青春痘","過敏","抗敏","失眠","憂鬱","胃潰瘍","胃食道逆流","骨質疏鬆","關節炎","細胞再生","修復受損","DNA","傷口","疤痕","除疤","去疤","生髮","增髮","防止落髮","防掉髮","禿頭","黃斑部","近視","感冒","病毒","流感","解毒","排毒","清血","淨化血液","經痛","壯陽","性功能","攝護腺","脂肪肝","保肝","顧肝","解酒","預防疾病","處方","殺菌","止癢","消腫","退火","補腎"].map(w=>[w,"a",3,MED]),
+ ["抑菌","c",2,"抑菌、抗菌宣稱易被認定為醫療效能，需有佐證並避免連結皮膚疾病"],
+ ["粉刺","c",2,"可寫「清潔毛孔髒污」，不可寫消除、預防或治療粉刺"],
+ ["妊娠紋","c",2,"宣稱淡化或預防妊娠紋屬改變身體結構"],
+ ["便秘","f",2,"不可宣稱改善便秘，可改用「使排便順暢」"],
+ ["免疫力","f",3,"增強或提升免疫力屬生理功能；只有核准「免疫調節」的健康食品可宣稱"],
+ ["抵抗力","f",3,"增強抵抗力屬生理功能宣稱"],
+ ["護肝","f",3,"僅核准「護肝」的健康食品可用，且須照許可文字","hf"],
+ /* 化粧品：影響生理機能或改變身體結構 */
+ ...["瘦身","減肥","減重","燃脂","消脂","溶脂","甩肉","塑身","豐胸","隆乳","美胸","提臀","小臉","V臉","瘦臉","消除皺紋","除皺","去皺","填補皺紋","去斑","除斑","消除黑斑","刺激膠原蛋白","增加膠原蛋白","膠原蛋白增生","活化毛囊","刺激毛囊","睫毛增長","增長睫毛","微整形","取代醫美","媲美醫美","醫美級","肉毒","換膚","玻尿酸針","毛孔消失","荷爾蒙"].map(w=>[w,"c",3,"影響生理機能或改變身體結構（認定準則附件一）"]),
+ ["淡斑","c",2,"須含公告美白成分並有佐證；一般寫法可改「使膚色看起來均勻透亮」"],
+ ["美白","c",2,"須含公告美白成分、濃度符合成分使用限制表（116.10.01 生效）且有功效佐證；牙齒美白屬特定用途化粧品須許可證"],
+ ["縮小毛孔","c",2,"可改寫為「使毛孔看起來較細緻」"],
+ ["拉提","c",2,"易被認定改變臉部結構，可改「肌膚看起來緊緻有彈性」"],
+ ["撫平皺紋","c",2,"可改寫為「淡化乾燥細紋」"],
+ ["促進血液循環","c",2,"影響生理機能"],
+ ["修復","c",1,"「修復」若連結細胞、屏障受損易判定醫療效能，建議改「修護」"],
+ /* 食品：身體外觀、生理功能 */
+ ...["瘦身","減肥","減重","燃脂","消脂","排油","阻斷澱粉","阻斷油脂","代謝脂肪","降體脂","豐胸","增高","長高","轉骨","美白","淡斑","抗老","抗衰老","逆齡","凍齡","回春","提升記憶","增強記憶","健腦","護眼","保護眼睛","視力"].map(w=>[w,"f",3,"食品不得宣稱改變身體外觀或特定生理功能"]),
+ ...["不易形成體脂肪","調節血糖","調節血脂","調節血壓","骨質保健","牙齒保健","胃腸功能改善","調整過敏體質","調節血鐵","促進鐵吸收","延緩衰老","抗疲勞","免疫調節","膝關節保健"].map(w=>[w,"f",3,"健康食品保健功效詞句，未取得許可不得使用","hf"]),
+ ["抗氧化","f",2,"食品宣稱抗氧化易被認定涉及生理功能"],
+ ["助眠","f",2,"幫助入睡、助眠屬生理功能宣稱，風險高"],
+ ["幫助入睡","f",2,"屬生理功能宣稱，風險高"],
+ ["好眠","f",2,"連結睡眠品質的宣稱需謹慎"],
+ ["消除疲勞","f",2,"可改「增強體力」「精神旺盛」"],
+ ["健康食品","f",3,"未取得健康食品許可證不得使用此名稱（健康食品管理法§21）","hfname"],
+ ["小綠人","f",3,"未取得許可不得暗示具健康食品標章","hfname"],
+ /* 誇大、易生誤解 */
+ ...["100%","百分之百","保證","第一名","唯一","最有效","最強","最佳","No.1","神奇","奇蹟","特效","速效","立即見效","立即","馬上","立刻","無副作用","零副作用","不復發","根除","徹底","永久","醫師推薦","醫生推薦","藥師推薦","醫院","診所","衛福部認證","食藥署認證","FDA認證","FDA核准","國家認證","醫療級","醫藥級","藥用"].map(w=>[w,"a",2,"虛偽誇大或易生誤解"]),
+ ["醫師","a",2,"以醫事人員名義推薦或背書屬高風險"],
+ ["醫生","a",2,"以醫事人員名義推薦或背書屬高風險"],
+ ["臨床證實","a",2,"須有可公開、與產品相符的試驗佐證"],
+ ["臨床實驗","a",2,"須有可公開、與產品相符的試驗佐證"],
+ ["人體試驗","a",2,"須註明試驗條件，避免以偏概全"],
+ ["專利","a",1,"須標明專利字號且與宣稱內容相符"],
+ ["SGS","a",1,"檢驗報告僅能證明檢驗項目，不可延伸為功效"],
+ ["純天然","a",1,"須有依據；全天然宣稱易被認定誇大"],
+ ["無添加","a",1,"須說明不添加何物，且屬實"],
+ ["有機","a",1,"食品須有有機驗證；化粧品不得暗示有機認證"],
+ ["最","a",1,"「最」字為絕對用語，確認是否有客觀依據"]
+];
+const RX_DAYS=/\d+\s*(天|日|週|周)(內)?\s*(見效|有感|變白|變瘦|瘦)/g;
+
+function scan(text,cat,approved=""){
+  const scope=catScope(cat), isHF=cat==="hf", hits=[];
+  if(!text) return hits;
+  for(const [w,s,lv,note,flag] of LEX){
+    if(s!=="a"&&s!==scope) continue;
+    let level=lv,msg=note;
+    if(isHF&&(flag==="hf"||flag==="hfname")){level=1;msg="已選健康食品：用詞須與許可證核准功效原文一致，不可擴大";}
+    if(isHF&&flag==="hf"&&approved){
+      if(approved.includes(w)){level=1;msg="與許可證核准功效相符，須照核准敘述原文使用";}
+      else{level=3;msg=`超出許可範圍：許可證核准的保健功效不包含「${w}」（健康食品管理法§14）`;}
+    }
+    let i=text.indexOf(w);
+    while(i!==-1){hits.push({s:i,e:i+w.length,w,level,msg});i=text.indexOf(w,i+w.length);}
+  }
+  let m;RX_DAYS.lastIndex=0;
+  while((m=RX_DAYS.exec(text))) hits.push({s:m.index,e:m.index+m[0].length,w:m[0],level:3,msg:"保證時效的見效宣稱屬誇大"});
+  hits.sort((a,b)=>a.s-b.s||(b.e-b.s)-(a.e-a.s));
+  const out=[];let end=-1;
+  for(const h of hits){if(h.s>=end){out.push(h);end=h.e;}}
+  return out;
+}
+function groupHits(hits){
+  const map=new Map();
+  for(const h of hits){const k=h.w;if(!map.has(k))map.set(k,{...h,n:0});map.get(k).n++;}
+  return [...map.values()].sort((a,b)=>b.level-a.level);
+}
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LVTXT={3:"高",2:"中",1:"低"};
+
+/* ---------- 法規知識（送給 Claude 的共同依據） ---------- */
+const KNOWLEDGE=`【台灣法規依據摘要（核對日 2026-10-31）】
+化粧品：
+- 化粧品衛生安全管理法第10條：標示、宣傳、廣告不得虛偽或誇大(第1項)，不得涉及醫療效能(第2項)；化粧品宣稱效能應有事實佐證(第3項)，佐證存於產品資訊檔案PIF。第22條罰則：虛偽誇大4萬～20萬元；醫療效能60萬～500萬元。
+- 化粧品標示宣傳廣告涉及虛偽誇大或醫療效能認定準則(108.06.04)：依品名、文字、圖案、影像、聲音整體表現判斷。附件一：影響生理機能或改變身體結構（如瘦身、豐胸、除皺、生髮、刺激膠原蛋白增生、細胞再生、活化毛囊、小臉、取代醫美）；附件二：醫療效能（治療、消炎、抗痘、抗敏、除疤、殺菌、預防疾病）；附件三：通常得使用之詞句（如保濕、滋潤、修護、舒緩肌膚乾燥、使肌膚看起來緊緻、淡化乾燥細紋、使毛孔看起來較細緻、清潔毛孔髒污、使頭髮看起來豐盈）。
+- 特定用途化粧品（防曬、染髮、燙髮、止汗制臭、牙齒美白）須取得許可證，只能宣稱許可效能。一般化粧品宣稱美白、淡斑須使用公告美白成分並有佐證；化粧品成分使用限制表修正（114.11.06公告，116.10.01生效）列入麴酸1%（臉部及手部）、熊果素7%、抗壞血酸葡萄糖苷2%、維生素C磷酸鎂鹽與磷酸鈉鹽3%、鞣花酸3%、傳明酸等美白成分限量，宣稱時成分濃度須合規。
+- PIF：食藥署115.05.28函，PIF查核採風險管理，防曬、染燙髮、止汗制臭、牙齒美白、嬰兒用、唇用、眼部用、牙膏漱口水優先查核；效能宣稱佐證須在PIF中。
+- 使用前後對比照片、影像若呈現身體結構改變，同樣違規。
+食品：
+- 食品安全衛生管理法第28條：不得不實、誇張、易生誤解(第1項)，不得宣稱醫療效能(第2項)。第45條罰則：4萬～400萬元；醫療效能60萬～500萬元。
+- 食品及相關產品標示宣傳廣告涉及不實誇張易生誤解或醫療效能認定準則（最新修正113.05.08）：不得宣稱預防、改善、減輕、診斷或治療疾病或特定生理情形；不得涉及改變身體外觀（瘦身、豐胸、增高、美白）或生理功能（增強免疫、抗疲勞、護肝、助眠、護眼等）；不得引用機關公文書字號或「衛福部認證」等易生誤解字樣；一般食品品名不得含「健康」。附件一通常可使用之詞句：幫助消化、幫助維持消化道機能、使排便順暢、改變細菌叢生態、調整體質、調節生理機能、促進新陳代謝、營養補給、健康維持、增強體力、精神旺盛、滋補強身、養顏美容、青春美麗、能量補給。附件二營養素生理功能詞句：須該營養素含量符合規定才可使用，用字須照附件原文（例：鈣「有助於維持骨骼與牙齒的正常發育及健康」）。
+健康食品：
+- 健康食品管理法：須取得許可證方可稱健康食品或使用小綠人標章；未經許可以健康食品販售處3年以下有期徒刑，得併科100萬元以下罰金(第21條)。第14條：不得涉及醫療效能、不得虛偽誇張、不得超出許可範圍；第24條罰10萬～50萬元，涉及醫療效能罰40萬～200萬元。核准保健功效（衛福部114.07.03公告，共14項）：骨質保健、調節血脂、胃腸功能改善、免疫調節、牙齒保健、護肝、調節血糖、延緩衰老、抗疲勞、輔助調節血鐵（舊稱促進鐵吸收）、輔助調節血壓、不易形成體脂肪、輔助調整過敏體質、膝關節保健；文案用字須以許可證核准文字為準。
+其他：
+- 藥事法第69條：非藥物不得為醫療效能之標示或宣傳。
+- 公平交易法第21條：不得虛偽不實或引人錯誤；薦證者（代言人、網紅、直銷夥伴）明知或可得而知仍推薦，負連帶損害賠償責任；第42條罰5萬～2500萬元。
+- 以醫師、藥師、醫療機構名義推薦，或宣稱臨床證實卻無佐證，屬高風險。絕對用語（最、第一、唯一、100%、保證、永久、無副作用）需有客觀依據，通常認定誇大。`;
+
+/* ---------- 迷你 Markdown ---------- */
+function inline(s){
+  return s.replace(/`([^`]+)`/g,"<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g,"<b>$1</b>")
+    .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+function md(src){
+  const lines=esc(src).split("\n");let html="",i=0;
+  while(i<lines.length){
+    let l=lines[i];
+    if(/^```/.test(l)){let buf=[];i++;while(i<lines.length&&!/^```/.test(lines[i]))buf.push(lines[i++]);i++;html+=`<pre><code>${buf.join("\n")}</code></pre>`;continue;}
+    if(/^\s*\|/.test(l)){let rows=[];while(i<lines.length&&/^\s*\|/.test(lines[i]))rows.push(lines[i++]);
+      rows=rows.filter(r=>!/^\s*\|[\s:\-|]+\|\s*$/.test(r)).map(r=>r.trim().replace(/^\||\|$/g,"").split("|").map(c=>inline(c.trim())));
+      html+=`<div class="tbl"><table>${rows.map((r,k)=>`<tr>${r.map(c=>k?`<td>${c}</td>`:`<th>${c}</th>`).join("")}</tr>`).join("")}</table></div>`;continue;}
+    let h=l.match(/^(#{1,4})\s+(.*)/);
+    if(h){const n=Math.min(4,Math.max(2,h[1].length));html+=`<h${n}>${inline(h[2])}</h${n}>`;i++;continue;}
+    if(/^\s*([-*]|\d+\.)\s+/.test(l)){const ol=/^\s*\d+\./.test(l);let items=[];
+      while(i<lines.length&&/^\s*([-*]|\d+\.)\s+/.test(lines[i]))items.push(lines[i++].replace(/^\s*([-*]|\d+\.)\s+/,""));
+      html+=`<${ol?"ol":"ul"}>${items.map(t=>`<li>${inline(t)}</li>`).join("")}</${ol?"ol":"ul"}>`;continue;}
+    if(/^&gt;\s?/.test(l)){let buf=[];while(i<lines.length&&/^&gt;\s?/.test(lines[i]))buf.push(lines[i++].replace(/^&gt;\s?/,""));html+=`<blockquote>${inline(buf.join("<br>"))}</blockquote>`;continue;}
+    if(!l.trim()){i++;continue;}
+    let buf=[];while(i<lines.length&&lines[i].trim()&&!/^(#{1,4}\s|```|\s*\||\s*([-*]|\d+\.)\s|&gt;)/.test(lines[i]))buf.push(lines[i++]);
+    html+=`<p>${inline(buf.join("<br>"))}</p>`;
+  }
+  return html;
+}
+
+/* ---------- 分頁 ---------- */
+function show(v){
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v));
+  ["gen","rev","ref"].forEach(k=>$("#view-"+k).hidden=k!==v);
+  try{localStorage.setItem("cc-tab",v)}catch(e){}
+}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>show(b.dataset.view));
+const fromHash=location.hash.slice(1);
+let startTab=["gen","rev","ref"].includes(fromHash)?fromHash:null;
+if(!startTab){try{startTab=localStorage.getItem("cc-tab")}catch(e){}}
+show(["gen","rev","ref"].includes(startTab)?startTab:"gen");
+
+/* ---------- 生成器 ---------- */
+const GEN_IDS=["g-cat","g-brand","g-name","g-license","g-func","g-ingr","g-evid","g-ta","g-kw1","g-kw2","g-ch","g-tone","g-more"];
+const GEN_EXAMPLE={"g-cat":"cos","g-brand":"晨露","g-name":"玻尿酸保濕精華 30ml","g-license":"","g-func":"",
+ "g-ingr":"玻尿酸鈉 1%、菸鹼醯胺 5%、積雪草萃取、泛醇",
+ "g-evid":"第三方人體功效測試：30 位受試者連續使用 4 週，角質層含水量平均提升 38%（報告編號待補）",
+ "g-ta":"25–40 歲上班族女性，冷氣房肌膚乾燥、上妝卡粉",
+ "g-kw1":"保濕精華推薦","g-kw2":"玻尿酸精華、乾肌保養、冷氣房保濕","g-ch":"官網／電商商品頁","g-tone":"專業溫暖","g-more":"結尾加入雙11檔期優惠提示"};
+function setGen(obj){for(const k of GEN_IDS) $("#"+k).value=obj[k]??"";syncFunc();}
+function getGen(){const o={};for(const k of GEN_IDS)o[k]=$("#"+k).value.trim();return o;}
+function syncFunc(){const hf=$("#g-cat").value!=="hf";$("#g-func-wrap").hidden=hf;$("#g-hf").hidden=hf;}
+$("#g-cat").addEventListener("change",syncFunc);
+let saved=null;try{saved=JSON.parse(localStorage.getItem("cc-gen")||"null")}catch(e){}
+if(saved){setGen(saved);$("#gen-ex-tag").hidden=true;}else setGen(GEN_EXAMPLE);
+$("#gen-form").addEventListener("input",()=>{$("#gen-ex-tag").hidden=true;try{localStorage.setItem("cc-gen",JSON.stringify(getGen()))}catch(e){}});
+$("#g-clear").onclick=()=>{setGen({"g-cat":"cos","g-ch":"官網／電商商品頁","g-tone":"專業溫暖"});$("#gen-ex-tag").hidden=true;try{localStorage.removeItem("cc-gen")}catch(e){}};
+
+function genPrompt(d){
+  return `你是台灣保養品與保健食品的資深法規文案顧問，同時精通 SEO 與 GEO（生成式引擎最佳化，讓 ChatGPT、Gemini、Perplexity、Google AI 摘要等 AI 搜尋容易引用）。
+請嚴格依下列台灣法規撰寫，只用繁體中文（台灣用語）。
+
+${KNOWLEDGE}
+
+【撰寫鐵則】
+1. 只能宣稱「可佐證的效能」欄位有寫的內容；沒有佐證就不寫效能，必要處用【待補：…】提示使用者補資料。不得捏造數據、試驗、獎項、專家或使用者見證。
+2. 依產品類別套用對應法規：化粧品只寫附件三類型的外觀描述詞；食品只用附件一通常可使用詞句或符合含量的附件二營養素詞句；健康食品只能用許可證核准功效原文。
+3. 不使用絕對用語（最、第一、唯一、100%、保證、永久、無副作用）、醫療用語、醫事人員推薦、前後對比描述。
+4. SEO：主關鍵字出現在標題、首段、至少一個 H2；自然帶入次要與長尾關鍵字，不堆砌。
+5. GEO：每段首句直接回答讀者問題；FAQ 用口語問句；寫清楚品牌、品名、成分、適用族群等實體資訊；提供 JSON-LD。
+
+【產品資料】
+- 類別：${catName(d["g-cat"])}
+- 品牌：${d["g-brand"]||"未提供"}
+- 品名／規格：${d["g-name"]||"未提供"}
+- 許可字號／登錄：${d["g-license"]||"無"}
+${d["g-cat"]==="hf"?`- 核准保健功效（原文）：${d["g-func"]||"未提供，請以【待補】標示"}\n`:""}- 主要成分與含量：${d["g-ingr"]||"未提供"}
+- 可佐證的效能：${d["g-evid"]||"無（不得撰寫任何效能宣稱）"}
+- 目標族群與情境：${d["g-ta"]||"未提供"}
+- 主關鍵字：${d["g-kw1"]||"未提供"}
+- 次要／長尾關鍵字：${d["g-kw2"]||"未提供"}
+- 文案用途：${d["g-ch"]}
+- 語氣：${d["g-tone"]}
+- 其他要求：${d["g-more"]||"無"}
+
+【輸出格式】用 Markdown，依序輸出以下段落，標題文字照寫：
+## 1. 合規判讀
+3–5 點：本類別適用法規、本次可宣稱範圍、刻意避開的詞與原因。
+## 2. SEO 標題與 Meta
+3 個標題選項（每個 32 字內）＋ 1 則 Meta 描述（80 字內）。
+## 3. 關鍵字配置
+表格：關鍵字｜類型（主／次／長尾／問句型）｜放置位置。
+## 4. 正文
+依「${d["g-ch"]}」格式撰寫完整可直接使用的文案（含 H2/H3 小標）。社群貼文另附 hashtag；EDM 附主旨與預覽文字。
+## 5. GEO 問答
+5–6 組 Q&A，答案 2–3 句，首句直接回答。
+## 6. 結構化資料
+一段 \`\`\`json 的 JSON-LD，包含 Product 與 FAQPage，內容與正文一致。
+## 7. 合規自檢表
+表格：文案中的效能或宣稱詞句｜依據（法條或準則附件）｜風險（低／中）｜備註。
+## 8. 上架前提醒
+條列：此類別必要標示項目、應備佐證文件（PIF、試驗報告、許可證）、代言或夥伴分享時的注意事項。`;
+}
+
+let sampleP=null;
+function getSample(){if(!sampleP)sampleP=(window.claude&&claude.use)?claude.use("sample").catch(()=>null):Promise.resolve(null);return sampleP;}
+const ERR={not_granted:"你沒有允許這個頁面使用 Claude，因此無法生成。重新整理頁面可再次選擇允許。",sampling_disabled:"這個帳號目前無法使用 Claude。",rate_limited:"使用太頻繁或已達用量上限，請稍後再試。",session_expired:"登入已過期，請重新登入 claude.ai。",refused:"Claude 拒絕處理這段內容，請調整後再試。",prompt_too_large:"內容太長，請縮短文字或減少圖片。",image_rejected:"圖片格式不支援或檔案太大，請換一張。",images_unavailable:"此檢視環境無法傳送圖片，請只送文字。",invalid_json:"回覆格式解析失敗，請再按一次。",empty_completion:"沒有得到回覆，請精簡內容後再試。"};
+const errMsg=e=>ERR[e&&e.code]||"連線中斷，請再試一次。";
+
+let genCtl=null,genText="";
+$("#g-stop").onclick=()=>genCtl&&genCtl.abort();
+$("#gen-form").addEventListener("submit",async ev=>{
+  ev.preventDefault();
+  const d=getGen();
+  if(!d["g-name"]){$("#g-status").textContent="請先填寫品名。";$("#g-status").className="status err";return;}
+  const sample=await getSample();
+  if(!sample){$("#g-status").textContent="目前的檢視環境無法呼叫 Claude，請在 claude.ai 開啟此頁。";$("#g-status").className="status err";return;}
+  genCtl=new AbortController();genText="";
+  $("#g-go").disabled=true;$("#g-stop").hidden=false;$("#g-copy").disabled=true;$("#g-to-rev").disabled=true;$("#g-scan").hidden=true;
+  $("#g-status").className="status";$("#g-status").textContent="思考中…（依法規判讀約需 30–90 秒）";
+  $("#g-out").innerHTML='<div class="empty">思考中…</div>';
+  try{
+    const r=await sample(genPrompt(d),{signal:genCtl.signal,cache:false,onText:({text})=>{genText=text;$("#g-out").innerHTML=md(text);$("#g-status").textContent="撰寫中…";}});
+    genText=r.text;$("#g-out").innerHTML=md(genText);
+    $("#g-status").textContent=r.truncated?"內容過長被截斷，可減少要求後重新生成。":"完成。下方已用詞庫自動複檢。";
+    finishGen(d["g-cat"]);
+  }catch(e){
+    if(e&&e.text){genText=e.text;$("#g-out").innerHTML=md(e.text);finishGen(d["g-cat"]);}
+    if(e&&e.code==="cancelled"){$("#g-status").textContent="已停止。";}
+    else{$("#g-status").className="status err";$("#g-status").textContent=errMsg(e);if(!e||!e.text)$("#g-out").innerHTML='<div class="empty">尚未產生內容。</div>';}
+  }finally{$("#g-go").disabled=false;$("#g-stop").hidden=true;}
+});
+function finishGen(cat){
+  $("#g-copy").disabled=!genText;$("#g-to-rev").disabled=!genText;$("#g-share").disabled=!genText;
+  const body=genText.split(/##\s*7\./)[0]; // 自檢表本身會列出避開的詞，不納入
+  const groups=groupHits(scan(body.replace(/##\s*1\.[\s\S]*?(?=##\s*2\.)/,""),cat,cat==="hf"?$("#g-func").value:""));
+  $("#g-scan").hidden=false;
+  $("#g-scan-chips").innerHTML=groups.length?groups.map(g=>`<span class="chip l${g.level}" title="${esc(g.msg)}">${esc(g.w)}${g.n>1?" ×"+g.n:""}・${LVTXT[g.level]}</span>`).join(""):'<span class="chip okc">未比對到高風險詞</span>';
+}
+$("#g-copy").onclick=async()=>{
+  try{await navigator.clipboard.writeText(genText);$("#g-status").textContent="已複製全文。";}
+  catch(e){const r=document.createRange();r.selectNodeContents($("#g-out"));const s=getSelection();s.removeAllRanges();s.addRange(r);$("#g-status").textContent="已選取全文，請按 Ctrl+C 複製。";}
+};
+$("#g-to-rev").onclick=()=>{
+  const m=genText.match(/##\s*4\.[^\n]*\n([\s\S]*?)(?=\n##\s*5\.|$)/);
+  $("#r-text").value=(m?m[1]:genText).trim();$("#r-cat").value=$("#g-cat").value;
+  $("#r-ctx").value=[$("#g-license").value,$("#g-func").value,$("#g-evid").value].filter(Boolean).join("\n");
+  $("#rev-ex-tag").hidden=true;runScan();show("rev");
+};
+
+/* ---------- 審查器 ---------- */
+const REV_EXAMPLE="【限時】28天見效！醫師推薦的逆齡精華，有效消除皺紋、淡斑美白，還能修復受損細胞。\n敏感肌、痘痘肌都適用，抗敏抗痘一次到位，100%純天然無副作用，媲美醫美療程！";
+$("#r-text").value=REV_EXAMPLE;
+let files=[]; // {kind:'img'|'text', name, blob?, url?, text?}
+function runScan(){
+  const t=$("#r-text").value,cat=$("#r-cat").value,hits=scan(t,cat,$("#r-ctx").value);
+  $("#r-hf").hidden=cat!=="hf";
+  let html="",p=0;
+  for(const h of hits){html+=esc(t.slice(p,h.s))+`<mark class="hl l${h.level}" title="${esc(h.msg)}">${esc(t.slice(h.s,h.e))}</mark>`;p=h.e;}
+  html+=esc(t.slice(p));
+  $("#r-mirror").innerHTML=html||'<span class="note">（尚無文字）</span>';
+  const groups=groupHits(hits);
+  $("#r-scanlist").innerHTML=groups.length?groups.map(g=>`<li><span class="sev l${g.level}">${LVTXT[g.level]}風險</span><span><b>${esc(g.w)}</b>${g.n>1?` ×${g.n}`:""}　${esc(g.msg)}</span></li>`).join(""):'<li><span class="sev l1">結果</span><span>未比對到詞庫中的高風險詞；仍建議執行深度審查。</span></li>';
+}
+let scanT;$("#r-text").addEventListener("input",()=>{$("#rev-ex-tag").hidden=true;clearTimeout(scanT);scanT=setTimeout(runScan,150);});
+$("#r-cat").addEventListener("change",runScan);
+$("#r-ctx").addEventListener("input",()=>{clearTimeout(scanT);scanT=setTimeout(runScan,150);});
+runScan();
+
+/* ---------- PDF 轉圖（pdf.js，主執行緒模式） ---------- */
+let pdfP=null;
+const loadScript=src=>new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+function loadPdf(){
+  if(!pdfP){const b="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+    pdfP=loadScript(b+"pdf.worker.min.js").then(()=>loadScript(b+"pdf.min.js")).then(()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc=b+"pdf.worker.min.js";return window.pdfjsLib;});
+    pdfP.catch(()=>{pdfP=null;});}
+  return pdfP;
+}
+async function pdfToParts(file,maxPages=6){
+  const lib=await loadPdf();
+  const doc=await lib.getDocument({data:new Uint8Array(await file.arrayBuffer()),isEvalSupported:false}).promise;
+  const n=Math.min(doc.numPages,maxPages),imgs=[];let text="";
+  for(let i=1;i<=n;i++){
+    const page=await doc.getPage(i),base=page.getViewport({scale:1}),vp=page.getViewport({scale:Math.min(2.5,1600/base.width)});
+    const c=document.createElement("canvas");c.width=Math.round(vp.width);c.height=Math.round(vp.height);
+    const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);
+    await page.render({canvasContext:ctx,viewport:vp}).promise;
+    const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",0.9));if(blob)imgs.push(blob);
+    try{const tc=await page.getTextContent();text+=tc.items.map(it=>it.str).join("")+"\n";}catch(e){}
+  }
+  return {imgs,text:text.trim(),pages:doc.numPages};
+}
+const isPdf=f=>f.type==="application/pdf"||/\.pdf$/i.test(f.name);
+
+function renderThumbs(){
+  $("#r-thumbs").innerHTML=files.map((f,i)=>`<div class="thumb">${f.kind==="img"?`<img src="${f.url}" alt="">`:`<span>${esc(f.name)}</span>`}<button type="button" data-i="${i}" aria-label="移除 ${esc(f.name)}">×</button></div>`).join("");
+  $("#r-thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{const f=files.splice(+b.dataset.i,1)[0];if(f.url)URL.revokeObjectURL(f.url);renderThumbs();});
+}
+function htmlToText(src){
+  const doc=new DOMParser().parseFromString(src,"text/html");
+  doc.querySelectorAll("script,style").forEach(n=>n.remove());
+  const alts=[...doc.querySelectorAll("img[alt]")].map(i=>i.getAttribute("alt")).filter(Boolean);
+  const title=doc.querySelector("title")?.textContent||"";
+  const body=(doc.body?.innerText||doc.body?.textContent||"").replace(/\n{3,}/g,"\n\n").trim();
+  return (title?`[EDM 主旨／標題] ${title}\n`:"")+body+(alts.length?`\n[圖片替代文字] ${alts.join("、")}`:"");
+}
+async function addFiles(list){
+  for(const f of list){
+    if(/^image\//.test(f.type)){files.push({kind:"img",name:f.name,blob:f,url:URL.createObjectURL(f)});}
+    else if(isPdf(f)){
+      const st=$("#r-status");st.className="status";st.textContent=`正在轉換「${f.name}」…`;
+      try{
+        const p=await pdfToParts(f);
+        p.imgs.forEach((b,i)=>files.push({kind:"img",name:`${f.name} 第${i+1}頁`,blob:b,url:URL.createObjectURL(b)}));
+        if(p.text.length>30){const cur=$("#r-text").value.trim();$("#r-text").value=(cur&&cur!==REV_EXAMPLE?cur+"\n\n":"")+`【${f.name}】\n`+p.text;$("#rev-ex-tag").hidden=true;runScan();}
+        st.textContent=`「${f.name}」已轉成 ${p.imgs.length} 張圖片${p.pages>p.imgs.length?`（共 ${p.pages} 頁，只取前 ${p.imgs.length} 頁）`:""}。`;
+      }catch(e){st.className="status err";st.textContent=`「${f.name}」無法讀取，請改用截圖上傳。`;}
+    }
+    else if(/\.(html?|txt|md)$/i.test(f.name)){
+      const raw=await f.text();const text=/\.html?$/i.test(f.name)?htmlToText(raw):raw;
+      files.push({kind:"text",name:f.name,text});
+      const cur=$("#r-text").value.trim();
+      $("#r-text").value=(cur&&cur!==REV_EXAMPLE?cur+"\n\n":"")+`【${f.name}】\n`+text;$("#rev-ex-tag").hidden=true;runScan();
+    }else{$("#r-status").className="status err";$("#r-status").textContent=`「${f.name}」格式不支援，請上傳圖片、PDF、HTML 或文字檔。`;}
+  }
+  renderThumbs();
+}
+const drop=$("#r-drop");
+drop.onclick=()=>$("#r-file").click();
+drop.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#r-file").click();}};
+$("#r-file").onchange=e=>{addFiles([...e.target.files]);e.target.value="";};
+drop.addEventListener("dragover",e=>{e.preventDefault();drop.classList.add("over");});
+drop.addEventListener("dragleave",()=>drop.classList.remove("over"));
+drop.addEventListener("drop",e=>{e.preventDefault();drop.classList.remove("over");addFiles([...e.dataTransfer.files]);});
+document.addEventListener("paste",e=>{if($("#view-rev").hidden)return;const imgs=[...(e.clipboardData?.files||[])].filter(f=>/^image\//.test(f.type));if(imgs.length){e.preventDefault();addFiles(imgs);}});
+
+$("#r-clear").onclick=()=>{$("#r-text").value="";$("#r-ctx").value="";$("#r-hf-card").innerHTML="";$("#r-hf-status").textContent="";files.forEach(f=>f.url&&URL.revokeObjectURL(f.url));files=[];renderThumbs();$("#rev-ex-tag").hidden=true;runScan();$("#r-out").innerHTML='<div class="empty">尚未審查。</div>';$("#r-status").textContent="";};
+
+function revPrompt(cat,ctx,text,nImg,local){
+  return `你是台灣衛生局與食藥署標準的化粧品、食品、健康食品廣告審查專家。請依下列法規審查使用者的文案${nImg?`與隨附的 ${nImg} 張圖片（EDM、海報、商品圖等）`:""}。
+
+${KNOWLEDGE}
+
+【審查方式】
+- 依整體表現判斷：文字、圖片中的文字、人物前後對比、示意圖（如肌膚剖面、脂肪燃燒、細胞修復動畫）、醫師白袍、認證標章都要檢查。
+- 每一個問題都要引用原文（圖片請寫「圖N：」加圖中文字或畫面描述）。
+- 嚴重度：高＝涉及醫療效能、未經許可稱健康食品、改變身體結構；中＝虛偽誇大、易生誤解、缺佐證；低＝建議優化或需確認佐證。
+- 改寫建議須為台灣法規下可使用的說法；若該宣稱無法合法表達，建議刪除。
+- 同時檢查是否缺少應揭露的資訊（如健康食品字號與警語、膠囊錠狀食品注意事項、化粧品用法與注意事項），只列出文案中明顯該有卻沒有的。
+- 不要捏造法條；不確定的條號寫「依○○法相關規定」。
+
+${cat==="hf"?`【健康食品專項檢查】
+- 文案宣稱的保健功效必須與許可證核准的保健功效項目及保健功效敘述一致，不得擴大、加強語氣、延伸到未核准的功效或族群（健康食品管理法§14），超出者列為高風險。
+- 即使核准「調節血糖」「調節血脂」「輔助調節血壓」，也不得寫成降血糖、降血脂、降血壓、治療或預防疾病（醫療效能）。
+- 若送審內容是包裝或標示，依健康食品管理法§13 檢查應標示事項：品名、內容物名稱及其重量或容量、食品添加物名稱、有效日期及保存方法、廠商名稱及地址、核准字號、健康食品標準圖樣（小綠人）、攝取量、食用時應注意事項、可能損害健康之警告及其他必要警語、營養成分及含量、核准之保健功效。缺漏列入 missing。
+- 廣告出現小綠人標章或「健康食品」字樣時，應與核准字號一致；標章不得變形或用在未核准品項。
+- 檢查許可證有效期限是否已過（今天是 ${new Date().toISOString().slice(0,10)}）。
+- 若未提供許可證資料，在 missing 提醒上傳許可證以比對核准範圍。
+`:""}
+【產品類別】${catName(cat)}
+【使用者提供的核准資訊／佐證】${ctx||"無"}
+【詞庫初篩命中】${local||"無"}
+【送審文案】
+${text||"（無文字，僅圖片）"}
+
+只回覆一個 JSON 物件，不要其他文字，格式：
+{"overall":"高風險|需修改|大致合規","summary":"2–3 句總評","findings":[{"severity":"高|中|低","quote":"原文或圖N描述","issue":"問題說明","law":"法源","penalty":"可能罰則","suggestion":"建議改寫"}],"missing":["缺漏揭露事項"],"rewrite":"整篇合規改寫版（保留原本行銷語氣與結構）"}`;
+}
+let revCtl=null;
+$("#r-stop").onclick=()=>revCtl&&revCtl.abort();
+$("#rev-form").addEventListener("submit",async ev=>{
+  ev.preventDefault();
+  const text=$("#r-text").value.trim(),imgs=files.filter(f=>f.kind==="img");
+  const st=$("#r-status");st.className="status";
+  if(!text&&!imgs.length){st.className="status err";st.textContent="請貼上文案或上傳圖片。";return;}
+  const sample=await getSample();
+  if(!sample){st.className="status err";st.textContent="目前的檢視環境無法呼叫 Claude，請在 claude.ai 開啟此頁。詞庫掃描仍可使用。";return;}
+  let send=imgs.map(f=>f.blob);
+  if(send.length){const lim=await sample.limits().catch(()=>null);
+    if(!lim||!lim.images){st.className="status err";st.textContent="此檢視環境無法傳送圖片，本次只審查文字。";send=[];}
+    else if(send.length>lim.images.maxCount){st.textContent=`一次最多 ${lim.images.maxCount} 張圖片，本次只送前 ${lim.images.maxCount} 張。`;send=send.slice(0,lim.images.maxCount);}}
+  const cat=$("#r-cat").value;
+  const local=groupHits(scan(text,cat,$("#r-ctx").value)).map(g=>`${g.w}(${LVTXT[g.level]})`).join("、");
+  revCtl=new AbortController();
+  $("#r-go").disabled=true;$("#r-stop").hidden=false;
+  if(!st.textContent)st.textContent="審查中…（逐句比對法規，約需 30–120 秒）";
+  $("#r-out").innerHTML='<div class="empty">審查中…</div>';
+  try{
+    const opts={signal:revCtl.signal,modelTier:"complex",onText:({text})=>{$("#r-out").innerHTML=`<div class="empty">撰寫報告中…已接收 ${text.length} 字</div>`;}};
+    if(send.length)opts.images=send;
+    const res=await sample.json(revPrompt(cat,$("#r-ctx").value.trim(),text.slice(0,20000),send.length,local),opts);
+    renderReport(res);st.className="status";st.textContent="審查完成。";
+  }catch(e){
+    if(e&&e.code==="cancelled"){st.textContent="已停止。";$("#r-out").innerHTML='<div class="empty">已停止審查。</div>';}
+    else{st.className="status err";st.textContent=errMsg(e);$("#r-out").innerHTML='<div class="empty">審查未完成。</div>';}
+  }finally{$("#r-go").disabled=false;$("#r-stop").hidden=true;}
+});
+function renderReport(r){
+  if(!r||typeof r!=="object"){$("#r-out").innerHTML='<div class="empty">回覆格式異常，請再按一次深度審查。</div>';return;}
+  const ov=String(r.overall||"需修改"),v=/高/.test(ov)?3:/合規/.test(ov)?1:2;
+  const lv=s=>/高/.test(s)?3:/低/.test(s)?1:2;
+  const fs=(Array.isArray(r.findings)?r.findings:[]).slice().sort((a,b)=>lv(b.severity)-lv(a.severity));
+  const counts=[3,2,1].map(k=>fs.filter(f=>lv(f.severity)===k).length);
+  let h=`<div class="verdict v${v}"><b>${esc(ov)}</b><p>${esc(r.summary||"")}</p></div>`;
+  h+=`<div class="chips" style="margin-top:10px"><span class="chip l3">高 ${counts[0]}</span><span class="chip l2">中 ${counts[1]}</span><span class="chip l1">低 ${counts[2]}</span></div>`;
+  h+=`<div class="findings">${fs.map(f=>{const l=lv(f.severity);return `<div class="finding l${l}">
+    <div class="btns"><span class="sev l${l}">${LVTXT[l]}風險</span><q>${esc(f.quote)}</q></div>
+    <div>${esc(f.issue)}</div>
+    <div class="law">${esc(f.law||"")}${f.penalty?`｜${esc(f.penalty)}`:""}</div>
+    ${f.suggestion?`<div class="fix">${esc(f.suggestion)}</div>`:""}</div>`}).join("")||'<div class="empty">沒有發現問題。</div>'}</div>`;
+  if(Array.isArray(r.missing)&&r.missing.length)h+=`<h3 style="margin-top:16px">缺漏揭露事項</h3><ul>${r.missing.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>`;
+  if(r.rewrite)h+=`<div class="btns" style="justify-content:space-between;margin-top:16px"><h3 style="margin:0">合規改寫版</h3><div class="btns"><button class="btn" type="button" id="r-share">一鍵轉發／下載</button><button class="btn ghost" type="button" id="r-copy">複製改寫版</button></div></div><div class="mirror" id="r-rewrite" style="margin-top:8px;max-height:none">${esc(r.rewrite)}</div>`;
+  $("#r-out").innerHTML=h;
+  const rs=$("#r-share");if(rs)rs.onclick=()=>{const first=String(r.rewrite).split("\n").map(s=>s.trim()).find(Boolean)||"";
+    openShare({text:String(r.rewrite),head:first.replace(/[【】\[\]]/g,"").slice(0,28),sub:"",cat:$("#r-cat").value,name:"合規改寫"});};
+  const cp=$("#r-copy");if(cp)cp.onclick=async()=>{try{await navigator.clipboard.writeText(r.rewrite);cp.textContent="已複製";}catch(e){const rg=document.createRange();rg.selectNodeContents($("#r-rewrite"));const s=getSelection();s.removeAllRanges();s.addRange(rg);cp.textContent="已選取，按 Ctrl+C";}};
+}
+/* ---------- 健康食品許可證：上傳、擷取、套用 ---------- */
+const today=()=>new Date().toISOString().slice(0,10);
+function hfPrompt(pdfText){
+  return `以下是台灣「健康食品」相關文件（許可證、核准公函、變更核准函或產品包裝標示）的圖片${pdfText?"，以及從 PDF 擷取的文字":""}。
+請逐字擷取，不要改寫、不要推測；找不到的欄位填空字串或空陣列。今天是 ${today()}。
+${pdfText?`【PDF 擷取文字】\n${pdfText.slice(0,15000)}\n`:""}
+只回覆一個 JSON 物件：
+{"docType":"許可證|核准公函|包裝標示|其他","license":"健康食品許可字號，例：衛部健食字第A00XXX號","name":"產品中文名稱","company":"申請商或製造商","functions":["核准保健功效項目，例：調節血脂"],"claim":"保健功效敘述原文","ingredients":"保健功效相關成分及含量","intake":"建議攝取量","warnings":"警語原文","cautions":"注意事項原文","valid":"許可證有效期限","issues":["文件疑點，例如：非健康食品文件、字號格式不符、有效期限已過、圖片模糊無法辨識的欄位"]}`;
+}
+function hfToCtx(d){
+  return ["【健康食品許可證】",
+    d.license&&`核准字號：${d.license}`,d.name&&`品名：${d.name}`,d.company&&`申請商：${d.company}`,
+    d.functions?.length&&`核准保健功效：${d.functions.join("、")}`,d.claim&&`保健功效敘述：${d.claim}`,
+    d.ingredients&&`保健功效成分：${d.ingredients}`,d.intake&&`攝取量：${d.intake}`,
+    d.warnings&&`警語：${d.warnings}`,d.cautions&&`注意事項：${d.cautions}`,d.valid&&`有效期限：${d.valid}`
+  ].filter(Boolean).join("\n");
+}
+function hfCard(d){
+  const fmtOk=/衛(部|署)健食(規)?字第\s*[A-Z]?\d+\s*號/.test(d.license||"");
+  const issues=[...(Array.isArray(d.issues)?d.issues:[])];
+  if(d.license&&!fmtOk)issues.unshift("字號格式與「衛部健食字第○○○號」或「衛部健食規字第○○○號」不符，請核對");
+  if(!d.license)issues.unshift("未擷取到核准字號");
+  const row=(k,v)=>v?`<dt>${k}</dt><dd>${esc(v)}</dd>`:"";
+  return `<div class="hfcard"><dl>
+    ${row("文件類型",d.docType)}${row("核准字號",d.license)}${row("品名",d.name)}${row("申請商",d.company)}
+    ${row("核准功效",(d.functions||[]).join("、"))}${row("功效敘述",d.claim)}${row("功效成分",d.ingredients)}
+    ${row("攝取量",d.intake)}${row("警語",d.warnings)}${row("注意事項",d.cautions)}${row("有效期限",d.valid)}
+  </dl>${issues.length?`<div class="bad">${issues.map(esc).join("<br>")}</div>`:""}
+  <div class="note">擷取結果已填入表單，請對照原件確認字字相符。</div></div>`;
+}
+function setupHf(prefix,apply){
+  const dropEl=$(`#${prefix}-hf-drop`),input=$(`#${prefix}-hf-file`),st=$(`#${prefix}-hf-status`),card=$(`#${prefix}-hf-card`);
+  let busy=false;
+  async function read(list){
+    if(busy||!list.length)return;
+    st.className="status";
+    const sample=await getSample();
+    if(!sample){st.className="status err";st.textContent="目前的檢視環境無法呼叫 Claude，請在 claude.ai 開啟此頁，或手動填寫核准資訊。";return;}
+    const lim=await sample.limits().catch(()=>null);
+    if(!lim||!lim.images){st.className="status err";st.textContent="此檢視環境無法傳送圖片，請手動填寫核准資訊。";return;}
+    busy=true;let imgs=[],pdfText="";
+    try{
+      for(const f of list){
+        if(/^image\//.test(f.type))imgs.push(f);
+        else if(isPdf(f)){st.textContent=`正在轉換「${f.name}」…`;const p=await pdfToParts(f,4);imgs.push(...p.imgs);pdfText+=p.text+"\n";}
+      }
+      if(!imgs.length){st.className="status err";st.textContent="請上傳圖片或 PDF。";return;}
+      imgs=imgs.slice(0,lim.images.maxCount);
+      st.textContent="讀取許可證中…（約 10–40 秒）";card.innerHTML="";
+      const d=await sample.json(hfPrompt(pdfText.trim()),{images:imgs});
+      if(!d||typeof d!=="object"){st.className="status err";st.textContent="讀取結果異常，請再上傳一次。";return;}
+      card.innerHTML=hfCard(d);apply(d);
+      st.textContent="已擷取並套用。";
+    }catch(e){st.className="status err";st.textContent=e&&e.code?errMsg(e):"檔案無法讀取，請改用清晰的截圖。";}
+    finally{busy=false;}
+  }
+  dropEl.onclick=()=>input.click();
+  dropEl.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();input.click();}};
+  input.onchange=e=>{read([...e.target.files]);e.target.value="";};
+  dropEl.addEventListener("dragover",e=>{e.preventDefault();dropEl.classList.add("over");});
+  dropEl.addEventListener("dragleave",()=>dropEl.classList.remove("over"));
+  dropEl.addEventListener("drop",e=>{e.preventDefault();e.stopPropagation();dropEl.classList.remove("over");read([...e.dataTransfer.files]);});
+}
+setupHf("r",d=>{$("#r-ctx").value=hfToCtx(d);runScan();});
+setupHf("g",d=>{
+  if(d.license)$("#g-license").value=d.license;
+  if(!$("#g-name").value.trim()&&d.name)$("#g-name").value=d.name;
+  $("#g-func").value=[(d.functions||[]).join("、"),d.claim].filter(Boolean).join("\n");
+  if(d.ingredients&&!$("#g-ingr").value.includes(d.ingredients))$("#g-ingr").value=[$("#g-ingr").value.trim(),d.ingredients].filter(Boolean).join("\n");
+  const must=[d.warnings&&`須完整標示警語：${d.warnings}`,d.cautions&&`須標示注意事項：${d.cautions}`,d.intake&&`攝取量：${d.intake}`].filter(Boolean).join("\n");
+  if(must&&!$("#g-more").value.includes(must))$("#g-more").value=[$("#g-more").value.trim(),must].filter(Boolean).join("\n");
+  $("#gen-form").dispatchEvent(new Event("input"));
+});
+
+/* ---------- 轉發面板：複製、下載、四平台、圖卡 ---------- */
+function toPlain(src){
+  return String(src)
+    .replace(/```[\s\S]*?```/g,"")
+    .split("\n").filter(l=>!/^\s*\|/.test(l))
+    .map(l=>l.replace(/^#{1,6}\s+/,"").replace(/^\s*[-*]\s+/,"・").replace(/\*\*([^*]+)\*\*/g,"$1").replace(/`([^`]+)`/g,"$1").replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,"$1 $2").replace(/^&gt;\s?|^>\s?/,""))
+    .join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
+const LIMITS=[["LINE",5000],["Facebook",63206],["Instagram",2200],["Threads",500]];
+let shareCtx={cat:"cos",name:"文案"},bgImg=null,userBg=null,dlP=null;
+const hero=new Image();hero.src="hero.webp";hero.onload=()=>{if(!$("#share").hidden)drawCard();};
+function getDl(){if(!dlP)dlP=(window.claude&&claude.use)?claude.use("downloads").catch(()=>null):Promise.resolve(null);return dlP;}
+const shStatus=(t,bad)=>{const s=$("#sh-status");s.className="status"+(bad?" err":"");s.textContent=t;};
+function openShare({text,head,sub,cat,name}){
+  shareCtx={cat,name:name||"文案"};
+  $("#sh-text").value=text;$("#sh-head").value=head||"";$("#sh-sub").value=sub||"";
+  shStatus("");$("#share").hidden=false;document.body.style.overflow="hidden";
+  syncShare();drawCard();$("#sh-copy").focus();
+}
+function closeShare(){$("#share").hidden=true;document.body.style.overflow="";}
+$("#sh-close").onclick=closeShare;
+$("#share").addEventListener("click",e=>{if(e.target.id==="share")closeShare();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#share").hidden)closeShare();});
+function syncShare(){
+  const t=$("#sh-text").value,n=[...t].length;
+  $("#sh-counts").innerHTML=LIMITS.map(([p,max])=>`<span class="${n>max?"over":""}">${p} ${n.toLocaleString()}／${max.toLocaleString()}${n>max?" 超出":""}</span>`).join("");
+  const approved=shareCtx.cat==="hf"?($("#view-rev").hidden?$("#g-func").value:$("#r-ctx").value):"";
+  const g=groupHits(scan(t,shareCtx.cat,approved)),hi=g.filter(x=>x.level===3).length,mid=g.filter(x=>x.level===2).length;
+  const w=$("#sh-scan");
+  if(hi||mid){w.className="warnline bad";w.textContent=`轉發前請再確認：詞庫命中 高風險 ${hi}、中風險 ${mid}（${g.filter(x=>x.level>1).map(x=>x.w).slice(0,6).join("、")}）`;}
+  else{w.className="warnline good";w.textContent="詞庫未命中高、中風險詞。";}
+  $("#sh-line").href="https://line.me/R/share?text="+encodeURIComponent(t.slice(0,1800));
+  $("#sh-th").href="https://www.threads.net/intent/post?text="+encodeURIComponent([...t].slice(0,500).join(""));
+}
+let shT;$("#sh-text").addEventListener("input",()=>{clearTimeout(shT);shT=setTimeout(syncShare,150);});
+async function copyText(t,okMsg){
+  try{await navigator.clipboard.writeText(t);shStatus(okMsg);return true;}
+  catch(e){const ta=$("#sh-text");ta.focus();ta.select();shStatus("瀏覽器不允許自動複製，文字已全選，請按 Ctrl+C（手機長按複製）。",true);return false;}
+}
+$("#sh-copy").onclick=()=>copyText($("#sh-text").value,"已複製文字。");
+$("#sh-fb").onclick=()=>{copyText($("#sh-text").value,"文字已複製，Facebook 已在新分頁開啟，建立貼文後貼上即可。");};
+$("#sh-ig").onclick=()=>{copyText($("#sh-text").value,"文字已複製，Instagram 已在新分頁開啟。請先上傳下載好的圖卡，再把文字貼到說明欄。");};
+$("#sh-line").onclick=()=>shStatus("已開啟 LINE 分享，選擇好友或群組即可送出。");
+$("#sh-th").onclick=()=>shStatus([...$("#sh-text").value].length>500?"已開啟 Threads，只帶入前 500 字，其餘請分串貼文。":"已開啟 Threads 發文頁。");
+const stamp=()=>new Date().toISOString().slice(0,10);
+async function saveFile(filename,data){
+  const dl=await getDl();
+  if(!dl){
+    if(!window.claude){ // 網站版（PWA）：直接用瀏覽器下載
+      const a=document.createElement("a"),u=URL.createObjectURL(data instanceof Blob?data:new Blob([data],{type:"text/plain;charset=utf-8"}));
+      a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);
+      shStatus(`已下載 ${filename}`);return;
+    }
+    shStatus("這個檢視環境不支援下載，請改用複製。",true);return;
+  }
+  try{await dl.save({filename,data});shStatus(`已下載 ${filename}`);}
+  catch(e){const c=e&&e.code;shStatus(c==="declined"?"已取消下載。":c==="rate_limited"?"已有一個下載確認視窗，請先處理它。":"下載失敗，請改用複製。",c!=="declined");}
+}
+$("#sh-dl-txt").onclick=()=>saveFile(`${shareCtx.name}-${stamp()}.txt`,$("#sh-text").value);
+
+function wrapLines(ctx,text,maxW,maxLines){
+  const out=[];let line="";
+  for(const ch of [...text]){
+    if(ctx.measureText(line+ch).width>maxW&&line){out.push(line);line=ch.trim()?ch:"";if(out.length===maxLines)break;}
+    else line+=ch;
+  }
+  if(out.length<maxLines&&line)out.push(line);
+  if(out.length===maxLines&&[...out.join("")].length<[...text].length)out[maxLines-1]=out[maxLines-1].slice(0,-1)+"…";
+  return out;
+}
+async function drawCard(){
+  const [W,H]=$("#sh-size").value.split("x").map(Number),cv=$("#sh-canvas"),ctx=cv.getContext("2d");
+  cv.width=W;cv.height=H;
+  const head=$("#sh-head").value.trim(),sub=$("#sh-sub").value.trim();
+  try{await Promise.all([document.fonts.load(`300 64px "Noto Sans TC"`,head||"字"),document.fonts.load(`400 34px "Noto Sans TC"`,sub||"字"),document.fonts.load(`700 24px "Lato"`,"A")]);}catch(e){}
+  ctx.fillStyle="#f7e9ec";ctx.fillRect(0,0,W,H);
+  const img=userBg||(hero.complete&&hero.naturalWidth?hero:null),imgH=Math.round(H*(H>W*1.5?0.62:0.6));
+  if(img){
+    const iw=img.naturalWidth,ih=img.naturalHeight,r=W/imgH;let sw,sh,sx,sy;
+    if(iw/ih>r){sh=ih;sw=ih*r;sy=0;sx=userBg?(iw-sw)/2:iw-sw;}else{sw=iw;sh=iw/r;sx=0;sy=(ih-sh)/2;}
+    ctx.drawImage(img,sx,sy,sw,sh,0,0,W,imgH);
+    const g=ctx.createLinearGradient(0,imgH-140,0,imgH);g.addColorStop(0,"rgba(247,233,236,0)");g.addColorStop(1,"rgba(247,233,236,1)");
+    ctx.fillStyle=g;ctx.fillRect(0,imgH-140,W,140);
+  }
+  const pad=Math.round(W*0.085);let y=imgH+Math.round(H*0.03);
+  ctx.fillStyle="#e0004d";ctx.fillRect(pad,y,64,4);y+=46;
+  ctx.textBaseline="alphabetic";
+  const hs=Math.round(W*(H===W?0.058:0.062));
+  ctx.font=`300 ${hs}px "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif`;ctx.fillStyle="#3a1d27";
+  for(const l of wrapLines(ctx,head||"在這裡輸入圖卡標題",W-pad*2,3)){y+=hs*1.05;ctx.fillText(l,pad,y);y+=hs*0.28;}
+  if(sub){const ss=Math.round(W*0.032);ctx.font=`400 ${ss}px "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif`;ctx.fillStyle="#6e4a55";y+=ss*0.6;
+    for(const l of wrapLines(ctx,sub,W-pad*2,2)){y+=ss*1.1;ctx.fillText(l,pad,y);y+=ss*0.35;}}
+  const brand=($("#g-brand").value||"").trim();
+  ctx.font=`700 24px "Lato",sans-serif`;ctx.fillStyle="#e0004d";
+  if("letterSpacing" in ctx)ctx.letterSpacing="6px";
+  ctx.fillText(("AVON"+(brand&&brand.toUpperCase()!=="AVON"?" · "+brand:"")).toUpperCase(),pad,H-pad*0.8);
+  if("letterSpacing" in ctx)ctx.letterSpacing="0px";
+}
+let dT;["sh-head","sh-sub"].forEach(id=>$("#"+id).addEventListener("input",()=>{clearTimeout(dT);dT=setTimeout(drawCard,120);}));
+$("#sh-size").onchange=drawCard;
+$("#sh-bg").onchange=()=>{if($("#sh-bg").value==="upload")$("#sh-bgfile").click();else{userBg=null;drawCard();}};
+$("#sh-bgfile").onchange=e=>{const f=e.target.files[0];e.target.value="";
+  if(!f){if(!userBg)$("#sh-bg").value="hero";return;}
+  const im=new Image();im.onload=()=>{userBg=im;drawCard();};im.onerror=()=>{shStatus("這張圖片無法讀取，請換一張。",true);$("#sh-bg").value="hero";};im.src=URL.createObjectURL(f);};
+const cardBlob=()=>new Promise(res=>$("#sh-canvas").toBlob(res,"image/png"));
+$("#sh-dl-img").onclick=async()=>{const b=await cardBlob();if(!b){shStatus("圖卡產生失敗，請重試。",true);return;}saveFile(`${shareCtx.name}-圖卡-${$("#sh-size").value}-${stamp()}.png`,b);};
+$("#sh-copy-img").onclick=()=>{
+  try{navigator.clipboard.write([new ClipboardItem({"image/png":cardBlob()})]).then(()=>shStatus("已複製圖片，可直接貼到 LINE 或 FB。"),()=>shStatus("瀏覽器不允許複製圖片，請改用「下載圖卡」。",true));}
+  catch(e){shStatus("瀏覽器不允許複製圖片，請改用「下載圖卡」。",true);}
+};
+$("#g-share").onclick=()=>{
+  const body=(genText.match(/##\s*4\.[^\n]*\n([\s\S]*?)(?=\n##\s*5\.|$)/)||[,genText])[1];
+  const sec2=(genText.match(/##\s*2\.[^\n]*\n([\s\S]*?)(?=\n##\s*3\.|$)/)||[,""])[1];
+  const t1=(sec2.split("\n").map(l=>l.trim()).find(l=>/^([-*]|\d+\.)\s+/.test(l))||"")
+    .replace(/^([-*]|\d+\.)\s+/,"").replace(/\*\*/g,"").replace(/^(標題|選項)\s*\d*\s*[:：]\s*/,"").replace(/[「」"]/g,"").replace(/（\d+\s*字）$/,"");
+  openShare({text:toPlain(body),head:t1||$("#g-name").value,sub:[$("#g-brand").value,$("#g-name").value].filter(Boolean).join("｜"),cat:$("#g-cat").value,name:$("#g-name").value||"文案"});
+};
+$("#r-fwd").onclick=()=>{const t=$("#r-text").value.trim();if(!t){$("#r-status").className="status err";$("#r-status").textContent="請先貼上文案。";return;}
+  const first=t.split("\n").map(s=>s.trim()).find(Boolean)||"";
+  openShare({text:t,head:first.replace(/[【】\[\]]/g,"").slice(0,28),sub:"",cat:$("#r-cat").value,name:"文案"});};
+/* ---------- 網站版（PWA）：在 claude.ai 之外開啟時才啟用 ---------- */
+if(!window.claude){
+  $("#pwa-note").hidden=false;
+  if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
+  const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  if(!standalone&&/iPhone|iPad|iPod/.test(navigator.userAgent))$("#pwa-ios").hidden=false;
+  let deferred=null;
+  addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;$("#pwa-install").hidden=false;});
+  $("#pwa-install").onclick=async()=>{if(!deferred)return;deferred.prompt();await deferred.userChoice.catch(()=>null);deferred=null;$("#pwa-install").hidden=true;};
+  addEventListener("appinstalled",()=>{$("#pwa-install").hidden=true;});
+}
+getSample(); // 預先載入，不會花用量
+})();
+</script>
+
+</body>
+</html>
