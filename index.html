@@ -258,6 +258,8 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
               <option>EDM 電子報</option>
               <option>社群貼文（FB／IG／Threads）</option>
               <option>直銷夥伴分享短文</option>
+              <option>短影音腳本（Reels／Shorts／TikTok）</option>
+              <option>直播腳本（帶貨話術、Q&amp;A）</option>
             </select>
           </label>
           <label>語氣
@@ -308,9 +310,18 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
     <div class="panel">
       <h2>送審內容</h2>
       <form id="rev-form">
-        <label>產品類別
-          <select id="r-cat"></select>
-        </label>
+        <div class="row2">
+          <label>產品類別
+            <select id="r-cat"></select>
+          </label>
+          <label>送審類型
+            <select id="r-kind">
+              <option value="copy">文案／EDM／圖文</option>
+              <option value="video">影片腳本（短影音、廣告片、開箱）</option>
+              <option value="live">直播腳本（帶貨話術、口播稿）</option>
+            </select>
+          </label>
+        </div>
         <div class="hfbox" id="r-hf" hidden>
           <div class="hfhead"><b>上傳健康食品許可證</b><span class="note">許可證、核准公函或包裝標示（圖片或 PDF）。系統會擷取核准字號與保健功效，審查時逐句比對文案有沒有超出許可範圍</span></div>
           <div class="drop" id="r-hf-drop" tabindex="0" role="button">點此或拖曳上傳許可證／核准函</div>
@@ -321,14 +332,16 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
         <label>核准資訊 <small>健康食品核准功效、許可證字號、已有的試驗佐證；上傳許可證會自動填入</small>
           <textarea id="r-ctx" rows="2"></textarea>
         </label>
-        <label>文案／EDM 文字 <span class="example-tag" id="rev-ex-tag">範例違規文案</span>
+        <label><span id="r-text-lbl">文案／EDM 文字</span> <span class="example-tag" id="rev-ex-tag">範例違規文案</span>
           <textarea id="r-text" rows="8"></textarea>
+          <small id="r-kind-tip" hidden>口播、字幕、畫面描述、字卡、示範動作都要寫進去；保留時間碼或段落標記（如 00:15、【開場】），報告會標出違規位置。</small>
         </label>
         <div>
           <div class="drop" id="r-drop" tabindex="0" role="button">
-            點此或拖曳上傳：圖片（JPG／PNG／WebP／GIF）、PDF（DM、包裝標示，最多前 6 頁）、EDM 檔（.html／.htm）、文字檔（.txt／.md）
+            點此或拖曳上傳：圖片（JPG／PNG／WebP／GIF）、影片（MP4／WebM，自動擷取 8 張畫面）、PDF（DM、包裝標示、腳本，最多前 6 頁）、EDM 檔（.html／.htm）、腳本與字幕檔（.docx／.srt／.vtt／.csv）、文字檔（.txt／.md）<br>
+            <span class="note">影片只審查畫面與字卡，口播內容請一併上傳字幕檔或貼上腳本</span>
           </div>
-          <input type="file" id="r-file" multiple accept="image/jpeg,image/png,image/webp,image/gif,.pdf,application/pdf,.html,.htm,.txt,.md" hidden>
+          <input type="file" id="r-file" multiple accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime,.mp4,.m4v,.webm,.mov,.pdf,application/pdf,.html,.htm,.txt,.md,.docx,.srt,.vtt,.csv" hidden>
           <div class="thumbs" id="r-thumbs" style="margin-top:8px"></div>
         </div>
         <div class="btns">
@@ -427,6 +440,7 @@ footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);paddin
         <p class="note" style="margin:0 0 8px">每月 1 日自動檢查食藥署、全國法規資料庫的新公告與修正，有變動會同步更新生成與審查的依據。</p>
         <ul id="update-log">
           <!-- UPDATE-LOG:新紀錄加在這一行下方，最新在最上面 -->
+          <li><b>2026-11-02</b>　功能更新：法規審查新增「影片腳本」「直播腳本」送審類型，可上傳影片（自動擷取畫面）、字幕檔、Word 腳本，報告標出時間碼並提供直播 Q&amp;A 合規回答；文案生成新增短影音與直播腳本格式。</li>
           <li><b>2026-11-02</b>　例行檢查，未發現新修正</li>
           <li><b>2026-10-31</b>　人工查證：納入化粧品成分使用限制表修正（114.11.06 公告，116.10.01 生效，美白成分限量）與 PIF 查核原則（食藥署 115.05.28 函）。健康食品調節血糖、調節血脂、胃腸功能改善評估方法修正屬試驗方法與名稱調整，不影響文案用詞。</li>
           <li><b>2026-10-31</b>　人工查證：保健功效第 10 項正式名稱為「輔助調節血鐵」（舊稱促進鐵吸收）；「護肝」以公告名稱為準。已更新速查、法規依據與詞庫。</li>
@@ -548,6 +562,13 @@ const LEX=[
  ...["100%","百分之百","保證","第一名","唯一","最有效","最強","最佳","No.1","神奇","奇蹟","特效","速效","立即見效","立即","馬上","立刻","無副作用","零副作用","不復發","根除","徹底","永久","醫師推薦","醫生推薦","藥師推薦","醫院","診所","衛福部認證","食藥署認證","FDA認證","FDA核准","國家認證","醫療級","醫藥級","藥用"].map(w=>[w,"a",2,"虛偽誇大或易生誤解"]),
  ["醫師","a",2,"以醫事人員名義推薦或背書屬高風險"],
  ["醫生","a",2,"以醫事人員名義推薦或背書屬高風險"],
+ ...["比吃藥","比擦藥","取代藥物","不用吃藥","停藥","不用看醫生","藥都不用"].map(w=>[w,"a",3,"暗示可取代藥物或治療，屬醫療效能（直播、影片口播常見）"]),
+ ["吃了就","f",2,"保證效果的速效話術，易被認定誇大"],
+ ["擦了就","c",2,"保證效果的速效話術，易被認定誇大"],
+ ["有感","a",1,"「有感」不可連結身體變化或保證時效"],
+ ["見證","a",1,"消費者或主播見證與業者宣稱同樣認定，不能當效果證明"],
+ ["前後對比","a",2,"前後對比畫面或口述易被認定誇大或改變身體結構"],
+ ["使用前後","a",2,"前後對比畫面或口述易被認定誇大或改變身體結構"],
  ["臨床證實","a",2,"須有可公開、與產品相符的試驗佐證"],
  ["臨床實驗","a",2,"須有可公開、與產品相符的試驗佐證"],
  ["人體試驗","a",2,"須註明試驗條件，避免以偏概全"],
@@ -698,6 +719,8 @@ ${d["g-cat"]==="hf"?`- 核准保健功效（原文）：${d["g-func"]||"未提�
 表格：關鍵字｜類型（主／次／長尾／問句型）｜放置位置。
 ## 4. 正文
 依「${d["g-ch"]}」格式撰寫完整可直接使用的文案（含 H2/H3 小標）。社群貼文另附 hashtag；EDM 附主旨與預覽文字。
+短影音腳本：30–60 秒，用表格列出 時間碼｜畫面｜口播｜字幕／字卡，並附貼文說明與 hashtag。直播腳本：分【開場】【商品介紹】【示範】【Q&A】【收單】段落，寫成主播可照念的話術，Q&A 涵蓋療效、孕婦與兒童、多久有效、能否取代藥物等提問的合規回答。
+腳本中不得安排使用前後對比畫面、白袍或醫療人員、療效見證、「吃了就／擦了就」等速效話術；合作或贊助關係要在畫面或口播中揭露。
 ## 5. GEO 問答
 5–6 組 Q&A，答案 2–3 句，首句直接回答。
 ## 6. 結構化資料
@@ -756,7 +779,23 @@ $("#g-to-rev").onclick=()=>{
 
 /* ---------- 審查器 ---------- */
 const REV_EXAMPLE="【限時】28天見效！醫師推薦的逆齡精華，有效消除皺紋、淡斑美白，還能修復受損細胞。\n敏感肌、痘痘肌都適用，抗敏抗痘一次到位，100%純天然無副作用，媲美醫美療程！";
+const KINDS={
+  copy:{name:"文案",label:"文案／EDM 文字",ex:REV_EXAMPLE,cat:"cos"},
+  video:{name:"影片腳本",label:"影片腳本（口播、字幕、畫面）",cat:"cos",
+    ex:"[00:00]【開場】（主持人素顏特寫）姊妹們！這瓶精華我擦了兩週，斑真的淡掉了！\n[00:08]（畫面：使用前後對比照，字卡「28天見效」）\n[00:15]（穿白袍的皮膚科醫師入鏡）醫師推薦，它能修復受損細胞、刺激膠原蛋白增生。\n[00:30]【結尾】敏感肌、痘痘肌都能用，抗敏抗痘一次搞定，現在下單買一送一！"},
+  live:{name:"直播腳本",label:"直播腳本（話術、Q&A、示範）",cat:"cap",
+    ex:"【開場】哈囉大家晚安～今天直播限定價，只有 100 組！\n【商品介紹】這款益生菌我自己吃了三個月，過敏都好了，連便秘也改善。\n【Q&A】觀眾問：「小孩異位性皮膚炎可以吃嗎？」→ 可以啊！吃了皮膚就不會癢，比擦藥還有效。\n【示範】大家看，我現場泡給大家喝，喝完馬上就排便順暢，保證有感！\n【收單】最後 10 組，錯過要等明年喔！"}
+};
+const isExample=t=>Object.values(KINDS).some(k=>k.ex===t);
 $("#r-text").value=REV_EXAMPLE;
+function syncKind(){
+  const k=KINDS[$("#r-kind").value];
+  $("#r-text-lbl").textContent=k.label;$("#r-kind-tip").hidden=$("#r-kind").value==="copy";
+  const t=$("#r-text").value.trim();
+  if(!t||isExample(t)){$("#r-text").value=k.ex;$("#r-cat").value=k.cat;$("#rev-ex-tag").textContent=`範例違規${k.name}`;$("#rev-ex-tag").hidden=false;}
+  runScan();
+}
+$("#r-kind").addEventListener("change",syncKind);
 let files=[]; // {kind:'img'|'text', name, blob?, url?, text?}
 function runScan(){
   const t=$("#r-text").value,cat=$("#r-cat").value,hits=scan(t,cat,$("#r-ctx").value);
@@ -810,24 +849,89 @@ function htmlToText(src){
   const body=(doc.body?.innerText||doc.body?.textContent||"").replace(/\n{3,}/g,"\n\n").trim();
   return (title?`[EDM 主旨／標題] ${title}\n`:"")+body+(alts.length?`\n[圖片替代文字] ${alts.join("、")}`:"");
 }
+/* 字幕檔（SRT／VTT）：去掉序號與毫秒，每句前面留起始時間碼 */
+function subToText(raw){
+  return raw.replace(/\r/g,"").replace(/^\uFEFF?WEBVTT[^\n]*\n/,"").split(/\n{2,}/).map(b=>{
+    const ls=b.split("\n").filter(l=>l.trim());
+    if(!ls.length||/^(NOTE|STYLE|REGION)\b/.test(ls[0]))return "";
+    const ti=ls.findIndex(l=>/-->/.test(l));
+    if(ti<0)return ls.filter(l=>!/^\d+$/.test(l.trim())).join(" ");
+    const t=ls[ti].split("-->")[0].trim().replace(/[,.]\d+$/,"").replace(/^00:(\d\d:\d\d)$/,"$1");
+    return `[${t}] `+ls.slice(ti+1).join(" ").replace(/<[^>]+>/g,"");
+  }).filter(s=>s.trim()).join("\n");
+}
+/* 影片：平均擷取 n 張畫面（不含聲音），檔名帶時間碼，送審時對應「圖N」 */
+const mmss=t=>`${String(Math.floor(t/60)).padStart(2,"0")}:${String(Math.floor(t%60)).padStart(2,"0")}`;
+const isVideo=f=>/^video\//.test(f.type)||/\.(mp4|m4v|webm|mov)$/i.test(f.name);
+async function videoToFrames(file,n=8){
+  const url=URL.createObjectURL(file),v=document.createElement("video");
+  v.muted=true;v.playsInline=true;v.preload="auto";v.src=url;
+  try{
+    await new Promise((res,rej)=>{v.onloadeddata=res;v.onerror=()=>rej(new Error("decode"));setTimeout(()=>rej(new Error("timeout")),20000);});
+    const d=v.duration;if(!isFinite(d)||d<=0||!v.videoWidth)throw new Error("decode");
+    const w=Math.min(960,v.videoWidth),h=Math.round(v.videoHeight*w/v.videoWidth);
+    const c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d");
+    const frames=[];
+    for(let i=0;i<n;i++){
+      const t=Math.min(d-0.05,d*(i+0.5)/n);
+      await new Promise(res=>{const done=()=>{v.removeEventListener("seeked",done);res();};v.addEventListener("seeked",done);v.currentTime=t;setTimeout(done,4000);});
+      ctx.drawImage(v,0,0,w,h);
+      const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",0.85));
+      if(blob)frames.push({blob,t});
+    }
+    return {frames,duration:d};
+  }finally{URL.revokeObjectURL(url);}
+}
+let mammothP=null;
+function loadMammoth(){
+  if(!mammothP){mammothP=loadScript("https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js").then(()=>window.mammoth);mammothP.catch(()=>{mammothP=null;});}
+  return mammothP;
+}
+function appendText(name,text){
+  const cur=$("#r-text").value.trim();
+  $("#r-text").value=(cur&&!isExample(cur)?cur+"\n\n":"")+`【${name}】\n`+text;$("#rev-ex-tag").hidden=true;runScan();
+}
 async function addFiles(list){
+  const st=$("#r-status");
   for(const f of list){
     if(/^image\//.test(f.type)){files.push({kind:"img",name:f.name,blob:f,url:URL.createObjectURL(f)});}
+    else if(isVideo(f)){
+      st.className="status";st.textContent=`正在擷取「${f.name}」的畫面…`;
+      try{
+        const r=await videoToFrames(f);
+        r.frames.forEach(fr=>files.push({kind:"img",name:`${f.name} 畫面 ${mmss(fr.t)}`,blob:fr.blob,url:URL.createObjectURL(fr.blob)}));
+        if($("#r-kind").value==="copy"){$("#r-kind").value="video";syncKind();}
+        st.textContent=`「${f.name}」（${mmss(r.duration)}）已擷取 ${r.frames.length} 張畫面。口播內容請上傳字幕檔或貼上腳本，才能一起審查。`;
+      }catch(e){st.className="status err";st.textContent=`「${f.name}」無法在瀏覽器解碼，請轉成 MP4（H.264）後再上傳，或改傳影片截圖。`;}
+    }
     else if(isPdf(f)){
-      const st=$("#r-status");st.className="status";st.textContent=`正在轉換「${f.name}」…`;
+      st.className="status";st.textContent=`正在轉換「${f.name}」…`;
       try{
         const p=await pdfToParts(f);
         p.imgs.forEach((b,i)=>files.push({kind:"img",name:`${f.name} 第${i+1}頁`,blob:b,url:URL.createObjectURL(b)}));
-        if(p.text.length>30){const cur=$("#r-text").value.trim();$("#r-text").value=(cur&&cur!==REV_EXAMPLE?cur+"\n\n":"")+`【${f.name}】\n`+p.text;$("#rev-ex-tag").hidden=true;runScan();}
+        if(p.text.length>30)appendText(f.name,p.text);
         st.textContent=`「${f.name}」已轉成 ${p.imgs.length} 張圖片${p.pages>p.imgs.length?`（共 ${p.pages} 頁，只取前 ${p.imgs.length} 頁）`:""}。`;
       }catch(e){st.className="status err";st.textContent=`「${f.name}」無法讀取，請改用截圖上傳。`;}
     }
-    else if(/\.(html?|txt|md)$/i.test(f.name)){
-      const raw=await f.text();const text=/\.html?$/i.test(f.name)?htmlToText(raw):raw;
+    else if(/\.docx$/i.test(f.name)){
+      st.className="status";st.textContent=`正在讀取「${f.name}」…`;
+      try{
+        const m=await loadMammoth();
+        const text=(await m.extractRawText({arrayBuffer:await f.arrayBuffer()})).value.replace(/\n{3,}/g,"\n\n").trim();
+        files.push({kind:"text",name:f.name,text});appendText(f.name,text);
+        st.textContent=`「${f.name}」已讀入文字。`;
+      }catch(e){st.className="status err";st.textContent=`「${f.name}」無法讀取，請另存成 PDF 或把文字貼上。`;}
+    }
+    else if(/\.(srt|vtt)$/i.test(f.name)){
+      const text=subToText(await f.text());
       files.push({kind:"text",name:f.name,text});
-      const cur=$("#r-text").value.trim();
-      $("#r-text").value=(cur&&cur!==REV_EXAMPLE?cur+"\n\n":"")+`【${f.name}】\n`+text;$("#rev-ex-tag").hidden=true;runScan();
-    }else{$("#r-status").className="status err";$("#r-status").textContent=`「${f.name}」格式不支援，請上傳圖片、PDF、HTML 或文字檔。`;}
+      if($("#r-kind").value==="copy"){$("#r-kind").value="video";$("#r-text-lbl").textContent=KINDS.video.label;$("#r-kind-tip").hidden=false;}
+      appendText(f.name,text);
+    }
+    else if(/\.(html?|txt|md|csv)$/i.test(f.name)){
+      const raw=await f.text();const text=/\.html?$/i.test(f.name)?htmlToText(raw):raw;
+      files.push({kind:"text",name:f.name,text});appendText(f.name,text);
+    }else{st.className="status err";st.textContent=`「${f.name}」格式不支援，請上傳圖片、PDF、Word、字幕、HTML 或文字檔。`;}
   }
   renderThumbs();
 }
@@ -842,8 +946,25 @@ document.addEventListener("paste",e=>{if($("#view-rev").hidden)return;const imgs
 
 $("#r-clear").onclick=()=>{$("#r-text").value="";$("#r-ctx").value="";$("#r-hf-card").innerHTML="";$("#r-hf-status").textContent="";files.forEach(f=>f.url&&URL.revokeObjectURL(f.url));files=[];renderThumbs();$("#rev-ex-tag").hidden=true;runScan();$("#r-out").innerHTML='<div class="empty">尚未審查。</div>';$("#r-status").textContent="";};
 
-function revPrompt(cat,ctx,text,nImg,local){
-  return `你是台灣衛生局與食藥署標準的化粧品、食品、健康食品廣告審查專家。請依下列法規審查使用者的文案${nImg?`與隨附的 ${nImg} 張圖片（EDM、海報、商品圖等）`:""}。
+const KIND_RULES={
+video:`【影片腳本專項檢查】
+- 口播、字幕、畫面描述、字卡、道具、示範動作與背景都屬廣告內容，依整體表現判斷。畫面上的前後對比、皮膚剖面或脂肪燃燒動畫、穿白袍人物、檢驗儀器示範，即使口播沒說，也可能構成誇大或醫療效能。
+- 片中人物的使用心得與見證（例如「我擦了兩週斑淡了」）與業者自己的宣稱同樣認定。網紅、代言人、直銷夥伴依公平交易法§21 為薦證者，與廣告主的利益關係應在影片中揭露（如「合作」「贊助」）。
+- 字幕小字「效果因人而異」不能抵銷違規宣稱。
+- 每個問題的 loc 欄寫時間碼（如 00:35）或段落名稱（如【開場】、第 3 鏡）；腳本沒有標記時，寫該句開頭幾個字。
+- rewrite 保留原本的時間碼、段落與鏡頭標記，只改違規的口播、字幕與畫面描述。
+`,
+live:`【直播腳本專項檢查】
+- 直播中的口說話術、回覆留言、現場示範、試用、試吃、字卡與商品陳列都屬廣告。直播主自行銷售時視為廣告主，替品牌帶貨時為薦證者（公平交易法§21），都要負責。
+- 特別檢查即興話術常見違規：回答觀眾「可以治○○嗎」「孕婦／小孩可以吃嗎」時給予療效或保證；拿自己或觀眾的見證當效果證明；「吃了就瘦」「擦了就白」「馬上有感」等速效說法；前後對比示範。
+- 限時、限量、搶購等促銷話術本身不違反化粧品或食品廣告規定，但價格、贈品、數量須屬實，否則可能違反公平交易法§21；只在腳本內容明顯不實時才列出。
+- 每個問題的 loc 欄寫段落名稱、時間點或橋段（如【商品介紹】、Q&A）。
+- rewrite 保留原本的段落結構，改成主播可以直接照念的合規話術。
+- 另外在 qa 欄提供 3–6 組直播常見觀眾提問的合規回答範本，優先涵蓋本腳本出現的提問，以及療效、特殊族群（孕婦、兒童、慢性病患者）、多久有效、能不能取代藥物等問題。
+`};
+function revPrompt(cat,ctx,text,nImg,local,kind="copy",imgNames=[]){
+  const what=kind==="copy"?"文案":KINDS[kind].name;
+  return `你是台灣衛生局與食藥署標準的化粧品、食品、健康食品廣告審查專家。請依下列法規審查使用者的${what}${nImg?`與隨附的 ${nImg} 張圖片（EDM、海報、商品圖、影片截圖等）`:""}。
 
 ${KNOWLEDGE}
 
@@ -862,15 +983,15 @@ ${cat==="hf"?`【健康食品專項檢查】
 - 廣告出現小綠人標章或「健康食品」字樣時，應與核准字號一致；標章不得變形或用在未核准品項。
 - 檢查許可證有效期限是否已過（今天是 ${new Date().toISOString().slice(0,10)}）。
 - 若未提供許可證資料，在 missing 提醒上傳許可證以比對核准範圍。
-`:""}
+`:""}${KIND_RULES[kind]||""}
 【產品類別】${catName(cat)}
 【使用者提供的核准資訊／佐證】${ctx||"無"}
 【詞庫初篩命中】${local||"無"}
-【送審文案】
+【送審${what}】
 ${text||"（無文字，僅圖片）"}
-
+${imgNames.length?`\n【圖片清單】（「畫面 mm:ss」為影片在該時間點的截圖，問題位置請寫該時間碼）\n${imgNames.map((n,i)=>`圖${i+1}：${n}`).join("\n")}\n`:""}
 只回覆一個 JSON 物件，不要其他文字，格式：
-{"overall":"高風險|需修改|大致合規","summary":"2–3 句總評","findings":[{"severity":"高|中|低","quote":"原文或圖N描述","issue":"問題說明","law":"法源","penalty":"可能罰則","suggestion":"建議改寫"}],"missing":["缺漏揭露事項"],"rewrite":"整篇合規改寫版（保留原本行銷語氣與結構）"}`;
+{"overall":"高風險|需修改|大致合規","summary":"2–3 句總評","findings":[{"severity":"高|中|低",${kind==="copy"?"":"\"loc\":\"時間碼或段落\","}"quote":"原文或圖N描述","issue":"問題說明","law":"法源","penalty":"可能罰則","suggestion":"建議改寫"}],"missing":["缺漏揭露事項"],"rewrite":"整篇合規改寫版（保留原本行銷語氣與結構）"${kind==="live"?',"qa":[{"q":"觀眾可能的提問","a":"合規回答範本"}]':""}}`;
 }
 let revCtl=null;
 $("#r-stop").onclick=()=>revCtl&&revCtl.abort();
@@ -881,11 +1002,11 @@ $("#rev-form").addEventListener("submit",async ev=>{
   if(!text&&!imgs.length){st.className="status err";st.textContent="請貼上文案或上傳圖片。";return;}
   const sample=await getSample();
   if(!sample){st.className="status err";st.textContent="目前的檢視環境無法呼叫 Claude，請在 claude.ai 開啟此頁。詞庫掃描仍可使用。";return;}
-  let send=imgs.map(f=>f.blob);
+  let send=imgs.map(f=>f.blob),names=imgs.map(f=>f.name);
   if(send.length){const lim=await sample.limits().catch(()=>null);
-    if(!lim||!lim.images){st.className="status err";st.textContent="此檢視環境無法傳送圖片，本次只審查文字。";send=[];}
-    else if(send.length>lim.images.maxCount){st.textContent=`一次最多 ${lim.images.maxCount} 張圖片，本次只送前 ${lim.images.maxCount} 張。`;send=send.slice(0,lim.images.maxCount);}}
-  const cat=$("#r-cat").value;
+    if(!lim||!lim.images){st.className="status err";st.textContent="此檢視環境無法傳送圖片，本次只審查文字。";send=[];names=[];}
+    else if(send.length>lim.images.maxCount){st.textContent=`一次最多 ${lim.images.maxCount} 張圖片，本次只送前 ${lim.images.maxCount} 張。`;send=send.slice(0,lim.images.maxCount);names=names.slice(0,lim.images.maxCount);}}
+  const cat=$("#r-cat").value,kind=$("#r-kind").value;
   const local=groupHits(scan(text,cat,$("#r-ctx").value)).map(g=>`${g.w}(${LVTXT[g.level]})`).join("、");
   revCtl=new AbortController();
   $("#r-go").disabled=true;$("#r-stop").hidden=false;
@@ -894,14 +1015,14 @@ $("#rev-form").addEventListener("submit",async ev=>{
   try{
     const opts={signal:revCtl.signal,modelTier:"complex",onText:({text})=>{$("#r-out").innerHTML=`<div class="empty">撰寫報告中…已接收 ${text.length} 字</div>`;}};
     if(send.length)opts.images=send;
-    const res=await sample.json(revPrompt(cat,$("#r-ctx").value.trim(),text.slice(0,20000),send.length,local),opts);
-    renderReport(res);st.className="status";st.textContent="審查完成。";
+    const res=await sample.json(revPrompt(cat,$("#r-ctx").value.trim(),text.slice(0,20000),send.length,local,kind,names),opts);
+    renderReport(res,kind);st.className="status";st.textContent="審查完成。";
   }catch(e){
     if(e&&e.code==="cancelled"){st.textContent="已停止。";$("#r-out").innerHTML='<div class="empty">已停止審查。</div>';}
     else{st.className="status err";st.textContent=errMsg(e);$("#r-out").innerHTML='<div class="empty">審查未完成。</div>';}
   }finally{$("#r-go").disabled=false;$("#r-stop").hidden=true;}
 });
-function renderReport(r){
+function renderReport(r,kind="copy"){
   if(!r||typeof r!=="object"){$("#r-out").innerHTML='<div class="empty">回覆格式異常，請再按一次深度審查。</div>';return;}
   const ov=String(r.overall||"需修改"),v=/高/.test(ov)?3:/合規/.test(ov)?1:2;
   const lv=s=>/高/.test(s)?3:/低/.test(s)?1:2;
@@ -910,12 +1031,13 @@ function renderReport(r){
   let h=`<div class="verdict v${v}"><b>${esc(ov)}</b><p>${esc(r.summary||"")}</p></div>`;
   h+=`<div class="chips" style="margin-top:10px"><span class="chip l3">高 ${counts[0]}</span><span class="chip l2">中 ${counts[1]}</span><span class="chip l1">低 ${counts[2]}</span></div>`;
   h+=`<div class="findings">${fs.map(f=>{const l=lv(f.severity);return `<div class="finding l${l}">
-    <div class="btns"><span class="sev l${l}">${LVTXT[l]}風險</span><q>${esc(f.quote)}</q></div>
+    <div class="btns"><span class="sev l${l}">${LVTXT[l]}風險</span>${f.loc?`<span class="law">${esc(f.loc)}</span>`:""}<q>${esc(f.quote)}</q></div>
     <div>${esc(f.issue)}</div>
     <div class="law">${esc(f.law||"")}${f.penalty?`｜${esc(f.penalty)}`:""}</div>
     ${f.suggestion?`<div class="fix">${esc(f.suggestion)}</div>`:""}</div>`}).join("")||'<div class="empty">沒有發現問題。</div>'}</div>`;
   if(Array.isArray(r.missing)&&r.missing.length)h+=`<h3 style="margin-top:16px">缺漏揭露事項</h3><ul>${r.missing.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>`;
-  if(r.rewrite)h+=`<div class="btns" style="justify-content:space-between;margin-top:16px"><h3 style="margin:0">合規改寫版</h3><div class="btns"><button class="btn" type="button" id="r-share">一鍵轉發／下載</button><button class="btn ghost" type="button" id="r-copy">複製改寫版</button></div></div><div class="mirror" id="r-rewrite" style="margin-top:8px;max-height:none">${esc(r.rewrite)}</div>`;
+  if(Array.isArray(r.qa)&&r.qa.length)h+=`<h3 style="margin-top:16px">觀眾提問合規回答範本</h3><div class="findings" style="margin-top:0">${r.qa.map(x=>`<div class="finding"><b>Q：${esc(x.q)}</b><div class="fix">${esc(x.a)}</div></div>`).join("")}</div>`;
+  if(r.rewrite)h+=`<div class="btns" style="justify-content:space-between;margin-top:16px"><h3 style="margin:0">${kind==="copy"?"合規改寫版":`合規${KINDS[kind].name}改寫版`}</h3><div class="btns"><button class="btn" type="button" id="r-share">一鍵轉發／下載</button><button class="btn ghost" type="button" id="r-copy">複製改寫版</button></div></div><div class="mirror" id="r-rewrite" style="margin-top:8px;max-height:none">${esc(r.rewrite)}</div>`;
   $("#r-out").innerHTML=h;
   const rs=$("#r-share");if(rs)rs.onclick=()=>{const first=String(r.rewrite).split("\n").map(s=>s.trim()).find(Boolean)||"";
     openShare({text:String(r.rewrite),head:first.replace(/[【】\[\]]/g,"").slice(0,28),sub:"",cat:$("#r-cat").value,name:"合規改寫"});};
