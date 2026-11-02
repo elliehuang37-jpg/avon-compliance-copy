@@ -2,7 +2,7 @@
    - 網頁本體：先連網拿最新版（法規每月更新），離線時用快取
    - 圖片、圖示：先用快取
    - Google 字型、pdf.js（cdnjs）：用過一次就快取，之後離線可用 */
-const VERSION = "202611021240";
+const VERSION = "202611022130";
 const SHELL = "cc-shell-" + VERSION;
 const RUNTIME = "cc-runtime-v1";
 const PRECACHE = [
@@ -12,6 +12,7 @@ const PRECACHE = [
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
+  "./icons/icon-maskable-192.png",
   "./icons/icon-maskable-512.png",
   "./icons/apple-touch-icon.png",
   "./icons/favicon-32.png"

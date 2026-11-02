@@ -1,20 +1,52 @@
 {
+  "id": "/avon-compliance-copy/",
   "name": "合規文案工作台",
   "short_name": "合規文案",
-  "description": "台灣化粧品、食品、健康食品廣告法規：SEO/GEO 文案生成與標示廣告審查",
+  "description": "台灣化粧品、食品、健康食品廣告法規：SEO/GEO 文案生成、標示廣告審查、法規速查與四平台轉發。詞庫掃描與法規速查可離線使用。",
   "lang": "zh-TW",
   "dir": "ltr",
-  "start_url": "./",
+  "start_url": "./?source=pwa",
   "scope": "./",
-  "id": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
   "background_color": "#f7eef0",
   "theme_color": "#e0004d",
-  "categories": ["business", "productivity"],
+  "categories": ["business", "productivity", "utilities"],
+  "prefer_related_applications": false,
+  "launch_handler": { "client_mode": "focus-existing" },
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
     { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "文案生成",
+      "short_name": "生成",
+      "description": "填產品資料，產出合規 SEO/GEO 文案",
+      "url": "./?source=shortcut#gen",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "法規審查",
+      "short_name": "審查",
+      "description": "貼上文案或上傳圖片、EDM，檢查違規風險",
+      "url": "./?source=shortcut#rev",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "法規速查",
+      "short_name": "速查",
+      "description": "化粧品、食品、健康食品廣告法規與罰則",
+      "url": "./?source=shortcut#ref",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ],
+  "screenshots": [
+    { "src": "screenshots/mobile-review.png", "sizes": "1080x2340", "type": "image/png", "form_factor": "narrow", "label": "法規審查：即時標出高風險詞" },
+    { "src": "screenshots/mobile-generate.png", "sizes": "1080x2340", "type": "image/png", "form_factor": "narrow", "label": "文案生成：填產品資料產出合規文案" },
+    { "src": "screenshots/desktop-review.png", "sizes": "1280x800", "type": "image/png", "form_factor": "wide", "label": "電腦版工作台" }
   ]
 }
